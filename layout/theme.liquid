@@ -98,10 +98,6 @@
 
 {{ 'style.css' | asset_url | stylesheet_tag }}
 
-{%comment%}{% if settings.favicon_enable %}
-  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
-{% endif %}{%endcomment%}
-
 <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
 
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
@@ -136,13 +132,10 @@
 	<div id="cartDrawerInner">
 		<button>{{ 'x.svg' | asset_url | img_tag }}</button>
 		{% assign count = 0 %}
-		{% comment %}{% for item in cart.items %}
-		     {% capture count %}{{ count | plus:1 }}{% endcapture %}
-		{% endfor %}{% endcomment %}
 		<h1 class="custom-font product-description-header">Your Bag (<span class="cart-count">{{ cart.item_count }}</span>)</h1>
 		<div id="cartDrawerContent">
 			<div id="cartDrawerProducts">
-				<!-- stuff goes here -->
+				<!-- cart items are appended here -->
 				{% for item in cart.items %}
 					<div class="oi_cart-item">
                         <img src="{{ item | img_url: 'original' }}" alt="{{ item.product.title }}" />
@@ -170,7 +163,6 @@
 				<button id="oi_cart-note__save">Save</button>
 			</div>
 		</div>	
-		<!-- <a id="proceedToCart" href="/cart">Proceed to Cart</a> -->
 		<form action="/cart" method="post">
 			<input id="cart_submit" type="submit" value="
 			Check Out" name="checkout" class="btn btn-default proceedToCart">
@@ -344,8 +336,6 @@
 				<div id="search-wrapper">
 					<form id="search" action="/search" class="input input--bind">
 
-<!-- onblur="if(this.value=='')this.value=this.defaultValue;"
-	 onfocus="if(this.value==this.defaultValue)this.value='';" -->
 						<label class="input__label input__label--bind" for="input-19">
 							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" />
 						</label>
@@ -362,10 +352,6 @@
 				</div>
 
 				{% assign count = 0 %}
-
-				{% comment %}{% for item in cart.items %}
-				     {% capture count %}{{ count | plus:1 }}{% endcapture %}
-				{% endfor %} {% endcomment %}
 
 				<div id="cart-brief">
 					<div class="cart-link">
@@ -464,8 +450,6 @@
 						<div id="search-wrapper">
 					<form id="search" action="/search" class="input input--bind">
 
-<!-- onblur="if(this.value=='')this.value=this.defaultValue;"
-	 onfocus="if(this.value==this.defaultValue)this.value='';" -->
 						<label class="input__label input__label--bind" for="input-19">
 							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" />
 						</label>
@@ -489,72 +473,6 @@
 		</div>
 
 {% endif %}
-
-<!-- <div class="visible-xs visible-sm fixed-header mobile-hamburger-menu">
-
-	<div class="row">
-
-		<div class="col-xs-12">
-
-			<div id="search-wrapper">
-
-				<a id="responsive-menu-button" href="#sidr-mobile">
-					<i class="fa fa-bars fa-3x"></i>
-				</a>
-
-			</div>
-
-		</div>
-
-	</div>
-
-</div>
-
-<div id="mobile-navigation">
-		<nav class="nav">
-			<ul>
-
-
-				<li>
-
-				<form id="search" action="/search">
-					<input id="search_text" name="q" type="text" size="20" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" value="{{ 'layout.header.search_box_text' | t }}"/>
-				</form>
-
-				</li>
-
-						<li><strong><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></strong></li>
-
-						{% if settings.which-linklist-mobile-menu != '' %}
-								      {% for link in linklists[settings.which-linklist-mobile-menu].links %}
-
-								        {% assign child_list_handle = link.title | handleize %}
-								        {% if linklists[child_list_handle].links != blank %}
-								        <li class="dropdown">
-								          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-								            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
-								          </a>
-								          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-								            {% for childlink in linklists[child_list_handle].links %}
-								            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
-								            {% endfor %}
-								          </ul>
-								        </li>
-								        {% else %}
-								          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
-								        {% endif %}
-								      {% endfor %}
-						{% endif %}
-
-									{% if shop.customer_accounts_enabled %}
-									<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
-									<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
-
-									{% endif %}
-
-			</ul>
-		</nav>
-	</div> -->
 
 <header id="site-header" class="clearfix custom-font">
 

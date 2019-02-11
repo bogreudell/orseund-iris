@@ -320,12 +320,6 @@
 
 <div id="featured">
 
-	{% comment %}
-	<div class="title-bar custom-font">
-		<h2>{{ 'general.homepage.featured_products' | t }}</h2>
-	</div>
-	{% endcomment %}
-
 	<div class="row">
 		<ul class="featured-products product-grid">
 		{% for product in collections[settings.which-collection].products limit:8 %}
@@ -348,53 +342,7 @@
 
 </div>
 
-</div>
-
-{% comment %}
-<script type="text/javascript" charset="utf-8">
-
-jQuery(document).ready(function() {
-
-if ($(window).width() > 960) {
-	$(window).scroll(function(fade1){
-	    var fadeStart=10 // 100px scroll or less will equiv to 1 opacity
-	    windowheight= $(window).height(),
-	    fadeUntil= (windowheight), // 200px scroll or more will equiv to 0 opacity
-	    fading = $('.homepage-slider-mask');
-	    var offset = $("#main-block").offset().top - $(window).scrollTop()
-	        ,opacity=1;
-
-	    if( offset<=fadeStart ){
-	        opacity=0;
-	    }else if( offset<=fadeUntil ){
-	        opacity=offset/fadeUntil;
-	    }
-	    fading.css('opacity',opacity);
-	})
-}
-
-if ($(window).width() > 960) {
-	$(window).scroll(function(fade2){
-	    var fadeStart=0 // 100px scroll or less will equiv to 1 opacity
-	    windowheight= $(window).height(),
-	    fadeUntil= (windowheight), // 200px scroll or more will equiv to 0 opacity
-	    fading = $('#homepage-main-wrap-2');
-	    var offset = $("#footer-block").offset().top - $(window).scrollTop()
-	        ,opacity=1;
-
-	    if( offset<=fadeStart ){
-	        opacity=0;
-	    }else if( offset<=fadeUntil ){
-	        opacity=offset/fadeUntil;
-	    }
-	    fading.css('opacity',opacity);
-	})
-}
-
-});
-
-</script>
-{% endcomment %}
+</div><!-- what's going on here? -->
 
 {% if settings.show-instagram-homepage %}
 

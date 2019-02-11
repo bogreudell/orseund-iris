@@ -301,22 +301,3 @@
 
 </body>
 </html>
-
-<!-- printable link for re-use if desired -->
-{% comment %}                <a href="#" class="action-link left" onclick="window.print();"><i class="ico-16 print"></i>{{ 'gift_cards.issued.print' | t }}</a>{% endcomment %}
-<!-- end printable link -->
-
-<!-- expiry date code for re-use if desired -->
-{% comment %}<header id="gift-card-header">
-  <h2>{{ 'gift_cards.issued.subtext' | t }}</h2>
-  {% unless gift_card.enabled %}
-    <span class="tag">{{ 'gift_cards.issued.disabled' | t }}</span>
-  {% endunless %}
-  {% if gift_card.expired and gift_card.enabled %}
-     <span class="tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</span>
-  {% endif %}
-  {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
-    <span class="tag light">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</span>
-  {% endif %}
-</header>{% endcomment %}
-<!-- end expiry date code -->
