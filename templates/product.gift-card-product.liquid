@@ -2,18 +2,10 @@
 
 <article id="{{product.handle}}" class="product"><!-- used to have container class -->
 
-<!-- <div class="row">
-	<div class="col-md-12"> -->
 
 	{% include 'breadcrumb' %}
 
-<!-- 	</div>
-</div> -->
-
-<!-- <div class="row"> -->
 	<div class="product-content">
-
-	<!-- <div class="col-md-8 col-sm-8 product-images"> -->
 	
 	<div class="product-images">
 
@@ -26,7 +18,7 @@
 			{% if product.images.size > 1 %}
 				<ul id="product-thumbnails">
 				{% for image in product.images %}
-					<li> <!-- class="col-md-3 col-sm-4{% cycle ' alpha clearcolumn', '', '', ' omega' %}" -->
+					<li>
 						<a href="#{{ image.id }}" title="{{ image.alt | escape }}" class="image-swap">
 							<img src="{{ image | product_img_url: 'master'}}" alt="{{ image.alt | escape }}" />
 						</a>
@@ -37,15 +29,9 @@
 
 			{% for image in product.images %}
 				{% if forloop.first %}
-				<!--
-					<a href="{{ image | product_img_url: 'original' }}" title="{{ image.alt | escape }}" id="zoom1" class="cloud-zoom" rel="position: 'inside', showTitle: false">
-						<img src="{{ image | product_img_url: 'original'}}" alt="{{ image.alt | escape }}" class="product-main-image"/>
-					</a>
-				-->
 
 					{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 					<div class="featured-image-div">
-						{% comment %}<img src="{{ featured_image | img_url: 'master' }}" alt="{{ featured_image.alt | escape }}" class="product-main-image" />{% endcomment %}
 						{% for image in product.images %}
 							<img class="oi_main-image" id="{{ image.id }}" src="{{ image | product_img_url: 'master'}}" alt="{{ image.alt | escape }}" />	
 						{% endfor %}
@@ -55,28 +41,8 @@
 			{% endfor %}
 			<div class="clear"></div>
 		</div>
-		{% comment %}
-
-		<div id="mobile-product-images" class="visible-xs">
-
-		<ul id="product-thumbnails">
-		{% for image in product.images %}
-			<li class="two columns{% cycle ' alpha clearcolumn', '', '', ' omega' %}">
-				<img src="{{ image | product_img_url: 'master'}}" alt="{{ image.alt | escape }}" />
-			</li>
-		{% endfor %}
-		</ul>
-
-
-		</div>
-
-		{% endcomment %}
-
-
 
 	</div>
-
-<!-- 	<div class="col-md-4 col-sm-4"> -->
 	
 	<div class="product-information">
 
@@ -95,27 +61,10 @@
 	{% endcomment %}
 	<div id="product-variants">
 		<select id="product-select" name='id' class="form-control">
-			{% comment %}<option value="" disabled selected>SELECT</option>{% endcomment %}
 			{% for variant in product.variants %}
-			<option {%comment%} {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}{% endcomment %} value="{{ variant.id }}">{{ variant.title }} {%comment%}- {{ variant.price | money }}{%endcomment%}</option>
-			{% comment %}
-			THE BELOW LINE MAKES THE ACTUAL SIZE SHOW AS THE ONLY OPTION - COMMENT OUT ABOVE LINE AND ENABLE THE BELOW LINE TO MAKE THIS CHANGE - ethansteiner.com
-			<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">SIZE: {{ variant.title }}</option>
-			{% endcomment %}
+			<option value="{{ variant.id }}">{{ variant.title }}</option>
 			{% endfor %}
 		</select>
-		{% comment %}
-
-		<div class="selector-wrapper">
-		<label for="quantity">{{ 'products.product.quantity' | t }}</label>
-			<select id="quantity" name="quantity">
-			{% for i in (1..10) %}
-			<option value="{{ i }}">{{ i }}</option>
-			{% endfor %}
-			</select>
-		</div>
-
-		{% endcomment %}
 	</div>
 		{% if product.compare_at_price_max > product.price %}
 			<h5 class="custom-font compare-at-price">{{ product.compare_at_price_max | money }}</h5>
@@ -144,56 +93,6 @@
 						<div class="product-description-wrapper tk-acumin-pro">
 							{{ product.description }}
 						</div>
-
-		{% comment %}
-		{% if settings.share_prod_on_twitter or  settings.share_prod_on_facebook or  settings.share_prod_on_pinterest  or  settings.share_prod_on_googleplus %}
-
-		<div class="row">
-
-		<div id="sharing">
-
-
-			{% if settings.share_prod_on_twitter %}
-			<a class="glyph twitter" href="http://twitter.com/home?status=Check%20out%20this%20product: {{ shop.url }}{{ product.url }}">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-circle fa-stack-2x"></i>
-					<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-			{% endif %}
-
-			{% if settings.share_prod_on_facebook %}
-				<a class="glyph facebook" href="http://www.facebook.com/sharer.php?u={{ shop.url }}{{ product.url }}&t={{ product.title }}">
-					<span class="fa-stack fa-lg">
-						<i class="fa fa-circle fa-stack-2x"></i>
-						<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			{% endif %}
-
-			{% if settings.share_prod_on_googleplus %}
-				<a class="glyph googleplus" href="https://plus.google.com/share?url={{ shop.url }}{{ product.url }}" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-					<span class="fa-stack fa-lg">
-						<i class="fa fa-circle fa-stack-2x"></i>
-						<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			{% endif %}
-
-			{% if settings.share_prod_on_pinterest %}
-				<a href="//pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media=http:{{ product.featured_image | product_img_url: '1024x1024' | split: '?' | first }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}{% for t in product.tags %}{% assign tag = t | handle %}{{ '%20%23' | append: tag }}{% endfor %}" data-pin-do="buttonPin" data-pin-config="none">
-					<span class="fa-stack fa-lg">
-						<i class="fa fa-circle fa-stack-2x"></i>
-						<i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			{% endif %}
-
-		</div>
-
-		</div>
-
-		{% endif %} {% endcomment %}
 	</section>
 
 	<div class="oi_product-popups">
@@ -223,19 +122,9 @@
 
 {% if collection and collection.products_count > 1 %}
 
-<!-- <div class="remove-margins row">
-
-	<div class="col-md-12"> -->
-
 	<div class="title-bar custom-font">
-		<h2>Related Products</h2><!-- testing -->
+		<h2>Related Products</h2>
 	</div>
-
-<!-- 	</div>
-
-</div>
-
-<div class="remove-margins row"> -->
 
 	<ul class="product-grid clearfix">
   {% assign current_product = product %}
@@ -253,8 +142,6 @@
   {% endfor %}
   </ul>
 {% endif %}
-
-<!-- </div> -->
 
 {% endif %}
 
