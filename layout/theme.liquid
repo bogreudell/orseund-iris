@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+
+<head>
+<meta name="p:domain_verify" content="4ff4d7a41186f88b708b939bd3d7529d"/>
+<meta name="google-site-verification" content="IIilxEUpzfaT-Lf49ZhP6jUFUWmlqlYQKVCRkD0_hAQ" />
+<meta charset="utf-8">
+
+<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+{% if template == 'index' %}
+<title>{{ shop.name }}{% if settings.title_text != empty %} | {{ settings.title_text }}{% endif %}</title>
+{% elsif template == '404' %}
+<title>Page Not Found | {{ shop.name }}</title>
+{% else %}
+<title>{{ page_title }} | {{ shop.name }}</title>
+{% endif %}
+
+{% if page_description %}
+<meta name="description" content="{{ page_description }}" />
+{% endif %}
+{% if template == "product" %}
+	<meta name="keywords" content="{% for tag in product.tags %}{{tag}}, {% endfor %}" />
+	
+  	<meta property="og:type" content="product">
+	<meta property="og:title" content="{{ product.title | strip_html | escape }}">
+	<meta property="og:url" content="{{ canonical_url }}">
+  	{% if page_description %}
+	<meta property="og:description" content="{{ page_description }}">
+	{% endif %}
+	{% for image in product.images limit:3 %}
+	<meta property="og:image" content="http:{{ image.src | img_url: 'grande' }}">
+	<meta property="og:image:secure_url" content="https:{{ image.src | img_url: 'grande' }}">
+	{% endfor %}
+	<meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html | escape }}">
+	<meta property="og:price:currency" content="{{ shop.currency }}">
+{% else %}
+	<meta name="keywords" content="{{ settings.meta_keywords }}">
+{% endif %}
+
+<!-- Mobile Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+{% if settings.block_pinterest %}
+<meta name="pinterest" content="nopin" />
+{% endif %}
+
+<link rel="canonical" href="{{ canonical_url }}" />
+
+<!-- load font awesome -->
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-TXfwrfuHVznxCssTxWoPZjhcss/hp38gEOH8UPZG/JcXonvBQ6SlsIF49wUzsGno" crossorigin="anonymous">
+
+<!-- CSS -->
+
+{% case settings.typography-heading-font %}
+
+	{% when 'typography-heading-monserrat' %}
+	{{ '//fonts.googleapis.com/css?family=Montserrat' | stylesheet_tag }}
+
+	{% when 'typography-heading-playfair-display' %}
+	{{ '//fonts.googleapis.com/css?family=Playfair+Display:400italic' | stylesheet_tag }}
+
+	{% when 'typography-heading-open-sans' %}
+	{{ '//fonts.googleapis.com/css?family=Open+Sans:300' | stylesheet_tag }}
+
+	{% when 'typography-heading-josefin-sans' %}
+	{{ '//fonts.googleapis.com/css?family=Josefin+Sans' | stylesheet_tag }}
+
+	{% when 'typography-heading-halant' %}
+	{{ '//fonts.googleapis.com/css?family=Lato:300' | stylesheet_tag }}
+
+{% endcase %}
+
+{% case settings.typography-body-font %}
+
+	{% when 'typography-body-montserrat' %}
+		{{ '//fonts.googleapis.com/css?family=Montserrat' | stylesheet_tag }}
+
+	{% when 'typography-body-open-sans' %}
+		{{ '//fonts.googleapis.com/css?family=Open+Sans' | stylesheet_tag }}
+
+	{% when 'typography-body-raleway' %}
+		{{ '//fonts.googleapis.com/css?family=Raleway' | stylesheet_tag }}
+
+	{% when 'typography-body-merriweather' %}
+		{{ '//fonts.googleapis.com/css?family=Merriweather' | stylesheet_tag }}
+
+	{% when 'typography-body-lato' %}
+		{{ '//fonts.googleapis.com/css?family=Lato' | stylesheet_tag }}
+
+{% endcase %}
+
+{{ 'style.css' | asset_url | stylesheet_tag }}
+
+{%comment%}{% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+{% endif %}{%endcomment%}
+
+<link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
+{{ 'jquery-1.11.0.min.js' | asset_url | script_tag }}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+{{ content_for_header }}
+
+{%comment%}{{ 'modernizr.min.js' | asset_url | script_tag }}{%endcomment%}
+
+{% if template contains 'customers' %}
+{{ "shopify_common.js" | shopify_asset_url | script_tag }}
+{{ "customer_area.js"  | shopify_asset_url | script_tag }}
+{% endif %}
+
+<script src="https://use.typekit.net/jyu4vmf.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+<script src="https://use.typekit.net/glv8vto.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+<link rel="stylesheet" href="https://use.typekit.net/ihh7fjk.css">
+
+{%- include 'bold-common' -%}
+</head>
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.header_colorscheme_white %} header-white {% endif; %}">
+
+<!-- Ajax Cart -->
+<div id="cartDrawer" class="no-click" style="opacity:0;">
+	<div id="cartDrawerInner">
+		<button>{{ 'x.svg' | asset_url | img_tag }}</button>
+		{% assign count = 0 %}
+		{% comment %}{% for item in cart.items %}
+		     {% capture count %}{{ count | plus:1 }}{% endcapture %}
+		{% endfor %}{% endcomment %}
+		<h1 class="custom-font product-description-header">Your Bag (<span class="cart-count">{{ cart.item_count }}</span>)</h1>
+		<div id="cartDrawerContent">
+			<div id="cartDrawerProducts">
+				<!-- stuff goes here -->
+				{% for item in cart.items %}
+					<div class="oi_cart-item">
+                        <img src="{{ item | img_url: 'original' }}" alt="{{ item.product.title }}" />
+                        <h1 class="custom-font product-description-header">
+                        	{{ item.product.title }} 
+                        </h1> 
+                        <p>{{ item.variant.title }}</p>
+                        <p>
+                        	<span class="money">
+                        		{{ item.price | money }}
+                        	</span>
+                        </p> 
+                        <p class="cart-drawer__qty">
+                        	<span>Quantity:</span>
+                        	<button class="qty-minus">-</button>
+                        	<input data-variant="{{ item.variant.id }}" type="number" value="{{ item.quantity }}"/>
+                        	<button class="qty-plus">+</button>
+                        </p>
+                        <button class="oi_cart-item__remove">Remove</button>
+                    </div>
+				{% endfor %}
+			</div>
+			<div class="cart-drawer-textarea-wrap">
+				<textarea cols="30" rows="3" placeholder="Add a Note...">{{ cart.note }}</textarea>
+				<button id="oi_cart-note__save">Save</button>
+			</div>
+		</div>	
+		<!-- <a id="proceedToCart" href="/cart">Proceed to Cart</a> -->
+		<form action="/cart" method="post">
+			<input id="cart_submit" type="submit" value="
+			Check Out" name="checkout" class="btn btn-default proceedToCart">
+		</form>
+	</div>
+</div>
+<!-- /Ajax Cart -->
+
+<!-- Alert Banner -->
+{% if settings.show_alert_banner %}
+	<div id="oi_alert-banner">
+		<div class="oi_inner-wrap">
+		<button>{{ 'x.svg' | asset_url | img_tag }}</button>
+		{% if settings.alert_banner_link != '' %}
+			<a href="{{ settings.alert_banner_link }}">
+				<span>{{ settings.alert_banner_text }}</span>
+			</a>
+		{% else %}
+			<span>{{ settings.alert_banner_text }}</span>
+		{% endif %}
+		</div>
+	</div>
+{% endif %}
+<!--/Alert Banner -->
+
+{% if settings.show_alert_banner %}
+<header class="oi_fixed-header alert-banner-offset">
+{% else %}
+<header class="oi_fixed-header">
+{% endif %}
+
+	{% if shop.customer_accounts_enabled %}
+
+	<div id="login-popup" style="display: none;">
+
+		<h1>{{ 'customer.login.title' | t }}</h1>
+
+		<p class="login-popup--no-account">{{ 'customer.account.sign_up_here' | t }} <a href=\"/account/register\">{{ 'customer.account.sign_up_here_link' | t }}</a></p>
+
+	    {% form 'customer_login' %}
+	      {{ form.errors | default_errors }}
+
+	      <div id="login_email" class="clearfix form-group">
+	        <label for="customer_email" class="login" style="display: none;">{{ 'customer.login.email' | t }}</label>
+	        <input type="email" class="form-control" placeholder="{{ 'customer.login.email' | t }}" name="customer[email]" id="customer_email" class="large" size="30" />
+	      </div>
+
+	      {% if form.password_needed %}
+	        <div id="login_password" class="clearfix form-group">
+	          <label for="customer_password" class="login" style="display: none;">{{ 'customer.login.password' | t }}</label>
+	          <input type="password" class="form-control" placeholder="{{ 'customer.login.password' | t }}" name="customer[password]" id="customer_password" class="large password" size="16" />
+	        </div>
+
+	      {% endif %}
+	      <div class="action-bottom">
+	        <input class="btn btn-default" type="submit" value="{{ 'customer.login.sign_in' | t }}" />
+	      </div>
+	    {% endform %}
+
+	    <p class="login-popup--forgot-password"><a href="/account/login">{{ 'customer.login.forgot_password' | t }}</a></p>
+
+	</div>
+
+	{% endif %}
+	
+	{% if settings.show_alert_banner %}
+	<div class="container-fluid hidden-xs hidden-sm fixed-header custom-font" id="sticky-menu alert-banner-offset">
+	{% else %}
+	<div class="container-fluid hidden-xs hidden-sm fixed-header custom-font" id="sticky-menu">
+	{% endif %}
+
+	<div class="row">
+
+			{% if settings.which-linklist-header-menu != '' %}
+
+			<div class="col-md-6 col-lg-6 col-sm-12 header-left">
+
+				<nav class="navbar" role="navigation">
+
+					<div>
+						<ul class="nav navbar-nav">
+					      {% for link in linklists[settings.which-linklist-header-menu].links %}
+
+					        {% assign child_list_handle = link.title | handleize %}
+					        {% if linklists[child_list_handle].links != blank %}
+					        <li class="dropdown">
+					          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+					            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
+					          </a>
+					          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					            {% for childlink in linklists[child_list_handle].links %}
+					            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+					            {% endfor %}
+					          </ul>
+					        </li>
+					        {% else %}
+					          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+					        {% endif %}
+					      {% endfor %}
+
+							{% if shop.customer_accounts_enabled %}
+					        {% if customer %}
+					        	<li><a href="/account">{{ 'layout.customer.welcome' | t: name: customer.first_name }}</a></li>
+					        	<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
+					        	<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+					        	<li class="visible-xs"><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></li>
+					        {% else %}
+						      	<li><a href="#login-popup" class="various">{{ 'layout.customer.log_in' | t }}</a></li>
+				       			<li>{{ 'customer.register.title' | t | customer_register_link }}</li>
+					        {% endif %}
+					      		</li>
+					      	{% endif %}
+
+					    </ul>
+					</div>
+
+				</nav>
+
+			</div>
+
+			{% endif %}
+
+
+			<div class="col-md-6 col-lg-6 col-sm-12 header-right">
+				
+				{% if settings.which-linklist-secondary-header-menu != '' %}
+
+				<nav class="navbar" role="navigation">
+
+					<div>
+						<ul class="nav navbar-nav">
+					      {% for link in linklists[settings.which-linklist-secondary-header-menu].links %}
+
+					        {% assign child_list_handle = link.title | handleize %}
+					        {% if linklists[child_list_handle].links != blank %}
+					        <li class="dropdown">
+					          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+					            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
+					          </a>
+					          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					            {% for childlink in linklists[child_list_handle].links %}
+					            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+					            {% endfor %}
+					          </ul>
+					        </li>
+					        {% else %}
+					          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+					        {% endif %}
+					      {% endfor %}
+
+							{% if shop.customer_accounts_enabled %}
+					        {% if customer %}
+					        	<li><a href="/account">{{ 'layout.customer.welcome' | t: name: customer.first_name }}</a></li>
+					        	<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
+					        	<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+					        	<li class="visible-xs"><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></li>
+					        {% else %}
+						      	<li><a href="#login-popup" class="various">{{ 'layout.customer.log_in' | t }}</a></li>
+				       			<li>{{ 'customer.register.title' | t | customer_register_link }}</li>
+					        {% endif %}
+					      		</li>
+					      	{% endif %}
+
+					    </ul>
+					</div>
+
+				</nav>
+
+				{% endif %}
+
+				<div id="search-wrapper">
+					<form id="search" action="/search" class="input input--bind">
+
+<!-- onblur="if(this.value=='')this.value=this.defaultValue;"
+	 onfocus="if(this.value==this.defaultValue)this.value='';" -->
+						<label class="input__label input__label--bind" for="input-19">
+							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" />
+						</label>
+						<input
+							id="search_text"
+							name="q"
+							type="text"
+							size="20"
+							placeholder="{{ 'layout.header.search_box_text' | t }}"
+							class="input__field input__field--bind"
+						/>
+
+					</form>
+				</div>
+
+				{% assign count = 0 %}
+
+				{% comment %}{% for item in cart.items %}
+				     {% capture count %}{{ count | plus:1 }}{% endcapture %}
+				{% endfor %} {% endcomment %}
+
+				<div id="cart-brief">
+					<div class="cart-link">
+				         <a id="cartDrawerToggle" href="/cart" class="custom-font"><i class="fa fa-shopping-cart"></i> {{ 'layout.header.your_cart' | t }} (<span class="cart-count">{{ cart.item_count }}</span>)</a>
+					</div>
+				</div><!-- #cart-brief -->
+
+			</div>
+
+		</div>
+
+	</div><!-- .container -->
+
+
+	<div class="logo-wrapper">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-6 col-sm-6 col-sm-offset-3 col-md-offset-3">
+					<h1 id="site-title">
+					  <a href="/" title="Home">
+					    {% if settings.logo_image == "logo.png" %}
+					      <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="img-responsive"/>
+					    {% else %}
+					      {{ shop.name | escape }}
+					    {% endif %}
+					  </a>
+					</h1>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</header><!-- oi -->
+
+{% if settings.show_alert_banner %}
+<button id="oi_mobile-nav-trigger" class="alert-banner-offset">
+{% else %}
+<button id="oi_mobile-nav-trigger">
+{% endif %}
+	<i class="fa fa-bars fa-3x"></i>
+</button>
+
+
+{% if settings.which-linklist-mobile-menu != '' %}
+
+		<div id="oi_mobile-nav">
+
+			<nav class="navbar" role="navigation">
+
+				<div>
+					<ul class="nav navbar-nav">
+				      {% for link in linklists[settings.which-linklist-mobile-menu].links %}
+
+				        {% assign child_list_handle = link.title | handleize %}
+				        {% if linklists[child_list_handle].links != blank %}
+				        <li class="dropdown">
+				          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+				            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
+				          </a>
+				          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				            {% for childlink in linklists[child_list_handle].links %}
+				            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+				            {% endfor %}
+				          </ul>
+				        </li>
+				        {% else %}
+				          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+				        {% endif %}
+				      {% endfor %}
+
+						{% if shop.customer_accounts_enabled %}
+				        {% if customer %}
+				        	<li><a href="/account">{{ 'layout.customer.welcome' | t: name: customer.first_name }}</a></li>
+				        	<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
+				        	<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+				        	<li class="visible-xs"><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></li>
+				        {% else %}
+					      	<li><a href="#login-popup" class="various">{{ 'layout.customer.log_in' | t }}</a></li>
+			       			<li>{{ 'customer.register.title' | t | customer_register_link }}</li>
+				        {% endif %}
+				      		</li>
+				      	{% endif %}
+
+				      	<div id="mobile-cart-brief">
+							<div class="cart-link">
+						         <a href="/cart" class="custom-font"><i class="fa fa-shopping-cart"></i> {{ 'layout.header.your_cart' | t }} (<span class="cart-count">{{ count }}</span>)</a>
+							</div>
+						</div><!-- #cart-brief -->
+
+						<div id="search-wrapper">
+					<form id="search" action="/search" class="input input--bind">
+
+<!-- onblur="if(this.value=='')this.value=this.defaultValue;"
+	 onfocus="if(this.value==this.defaultValue)this.value='';" -->
+						<label class="input__label input__label--bind" for="input-19">
+							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" />
+						</label>
+						<input
+							id="search_text"
+							name="q"
+							type="text"
+							size="20"
+							placeholder="{{ 'layout.header.search_box_text' | t }}"
+							class="input__field input__field--bind"
+						/>
+
+					</form>
+				</div>
+
+				    </ul>
+				</div>
+
+			</nav>
+
+		</div>
+
+{% endif %}
+
+<!-- <div class="visible-xs visible-sm fixed-header mobile-hamburger-menu">
+
+	<div class="row">
+
+		<div class="col-xs-12">
+
+			<div id="search-wrapper">
+
+				<a id="responsive-menu-button" href="#sidr-mobile">
+					<i class="fa fa-bars fa-3x"></i>
+				</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div id="mobile-navigation">
+		<nav class="nav">
+			<ul>
+
+
+				<li>
+
+				<form id="search" action="/search">
+					<input id="search_text" name="q" type="text" size="20" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" value="{{ 'layout.header.search_box_text' | t }}"/>
+				</form>
+
+				</li>
+
+						<li><strong><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></strong></li>
+
+						{% if settings.which-linklist-mobile-menu != '' %}
+								      {% for link in linklists[settings.which-linklist-mobile-menu].links %}
+
+								        {% assign child_list_handle = link.title | handleize %}
+								        {% if linklists[child_list_handle].links != blank %}
+								        <li class="dropdown">
+								          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+								            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
+								          </a>
+								          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								            {% for childlink in linklists[child_list_handle].links %}
+								            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+								            {% endfor %}
+								          </ul>
+								        </li>
+								        {% else %}
+								          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+								        {% endif %}
+								      {% endfor %}
+						{% endif %}
+
+									{% if shop.customer_accounts_enabled %}
+									<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
+									<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+
+									{% endif %}
+
+			</ul>
+		</nav>
+	</div> -->
+
+<header id="site-header" class="clearfix custom-font">
+
+<div class="container">
+
+	{% if template != 'index' %}
+
+	{% if settings.show_text_promo_boxes %}
+
+	<div class="row">
+
+		<div class="promo-boxes">
+
+			{% case settings.number_of_text_promo_boxes %}
+			{% when 'one' %}
+
+			<div class="col-md-12">
+				<div class="promo-box-1-wrapper">
+					{% if settings.text_promo_box_1_link != empty %}
+						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			{% when 'two' %}
+
+			<div class="col-md-6 col-sm-6">
+				<div class="promo-box-1-wrapper">
+					{% if settings.text_promo_box_1_link != empty %}
+						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-6">
+				<div class="promo-box-2-wrapper">
+					{% if settings.text_promo_box_2_link != empty %}
+						<p><a href="{{ settings.text_promo_box_2_link }}">{{ settings.text_promo_box_2_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_2_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			{% when 'three' %}
+
+			<div class="col-md-4 col-sm-4">
+				<div class="promo-box-1-wrapper">
+					{% if settings.text_promo_box_1_link != empty %}
+						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<div class="promo-box-2-wrapper">
+					{% if settings.text_promo_box_2_link != empty %}
+						<p><a href="{{ settings.text_promo_box_2_link }}">{{ settings.text_promo_box_2_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_2_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<div class="promo-box-3-wrapper">
+					{% if settings.text_promo_box_3_link != empty %}
+						<p><a href="{{ settings.text_promo_box_3_link }}">{{ settings.text_promo_box_3_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_3_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			{% endcase %}
+
+		</div>
+
+	</div>
+
+	{% endif %}
+
+	{% endif %}
+
+</div>
+
+</header>
+
+<div class="main" role="main">
+
+{% if template == 'list-collections' %}
+{% include 'collection-listing' %}
+{% else %}
+{{ content_for_layout }}
+{% endif %}
+
+</div>
+
+{% include 'footer' %}
+
+{{ 'plugins.js' | asset_url | script_tag }}
+
+{{ 'custom.js' | asset_url | script_tag }}
+
+{% if settings.pop-up-selection == "text" %}
+
+	<div style="display:none;">
+		<div id="envy-auto-popup">
+			<h3 class="custom-font">{{ settings.pop-up-text-header-text }}</h3>
+			{% if settings.pop-up-text-description-text != empty %}
+				<p>{{ settings.pop-up-text-description-text }}</p>
+			{% endif %}
+			{% if settings.pop-up-mailchimp-url != empty %}
+			<div id="subs-container" class="clearfix">
+				<div id="mc_embed_signup">
+					<form action="{{ settings.pop-up-mailchimp-url }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="{{ 'general.newsletter_form.newsletter_text' | t }}" required>
+						<input type="submit" value="{{ 'general.newsletter_form.submit' | t }}" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default">
+					</form>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	if($(window).width() > 768){
+		$(document).ready(function(){
+			var check_cookie = $.cookie('envy-welcome-popup');
+			if(check_cookie == null){
+				$.cookie('envy-welcome-popup', 'true', { expires: 7 });
+				$.fancybox({
+					href: "#envy-auto-popup"
+				});
+			}
+		});
+	};
+	</script>
+
+{% endif %}
+
+{% if settings.pop-up-selection == "image" %}
+
+<script type="text/javascript">
+if($(window).width() > 768){
+	$(document).ready(function(){
+		var check_cookie = $.cookie('envy-welcome-popup');
+		if(check_cookie == null){
+			$.cookie('envy-welcome-popup', 'true', { expires: 7 });
+			$.fancybox.open([
+			    {
+			        href : '{{ 'pop-up-graphic.jpg' | asset_url }}'
+			    }
+			], {
+			    padding : 0
+				});
+			}
+	});
+};
+</script>
+{% endif %}
+
+{% if settings.show-instagram-alert %}
+
+	{% assign instaimage = '{{image}}' %}
+	{% assign instaurl = '{{link}}' %}
+
+	<script type="text/javascript">
+	    var userFeed = new Instafeed({
+	        get: 'user',
+	        userId: {{ settings.instagram-user-id }},
+	        accessToken: '{{ settings.instagram-access-token }}',
+	        template: '<div class="oi_instagram-image" style="background:url({{instaimage}}) center center no-repeat; background-size:cover;"><a href="{{instaurl}}" target="_blank"><div class="bottom-padding"></div><div class="oi_instagram-hover-overlay"></div><p>View On Social</p></a></div>',
+	        limit: 9,
+	        resolution: 'standard_resolution'
+	    });
+	    userFeed.run();
+
+	    //template: '<div class="col-md-2 col-sm-2 col-xs-6"><a class="fancybox-instagram" href="{{instaimage}}"><img src="{{instaimage}}" class="img-responsive"/></a></div>',
+	</script>
+
+{% endif %}
+
+{% if settings.blogfeed_facebook %}
+<!-- Blog Facebook Like Box -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endif %}
+
+{% if product.variants.size > 0 %}
+<script type="text/javascript">
+// <![CDATA[
+var selectCallback = function(variant, selector) {
+
+var comparePrice = $('.compare-at-price');
+
+  if (variant && variant.available == true) {
+    // selected a valid variant
+    jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+    jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}").replace(".00", ""));  // update price field
+  } else {
+    // variant doesn't exist
+    jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+    var message = variant ? {{ 'products.product.sold_out' | t | json }} : {{ 'products.product.unavailable' | t | json }};
+    comparePrice.hide();
+    jQuery('#price-field').text(message); // update price-field message
+  }
+
+  if (variant && variant.available == true) {
+	  if ( variant.compare_at_price > variant.price ) {
+	    comparePrice
+	      .html(Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
+	      .show();
+	  } else {
+	    comparePrice.hide();
+	  }
+	}
+
+if (variant && variant.featured_image) {
+        var originalImage = $(".featured-image-div img");
+        var newImage = variant.featured_image;
+        var element = originalImage[0];
+        Shopify.Image.switchImage(newImage, element, function (newImageSizedSrc, newImage, element) {
+            $( '.featured-image-div img' ).attr('src', newImageSizedSrc);
+        });
+    }
+
+};
+
+// initialize multi selector for product
+jQuery(function() {
+	new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+	$("#product-variants .selector-wrapper select").selectOrDie({
+		customClass: "custom",
+		customID:    "custom",
+		placeholder: "SELECT"
+	});
+	replaceSizes();
+});
+// ]]>
+
+Shopify.Image.preload({{ product.images | json }}, '1024x1024');
+
+</script>
+{% endif %}
+
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+jQuery(function() {
+  jQuery('nav a').each(function() {
+    if (jQuery(this).attr('href')  ===  window.location.pathname) {
+      jQuery(this).addClass('current');
+    }
+  });
+});
+//]]>
+</script>
+
+<script>
+	jQuery('a[href^="http"]').not('a[href^="{{ shop.url }}"]').attr('target', '_blank');
+</script>
+
+{% if product.variants.size > 0 %}
+<script type="text/javascript">
+// <replacing size list with size and price>
+
+function replaceSizes() {
+	var sizesSoD = document.getElementsByClassName("sod_option");
+	var sizesDoM = document.getElementById('product-select').options;
+	for (var i = 0; i < sizesSoD.length; i++) {
+		sizesSoD[i].innerHTML = sizesDoM[i].innerHTML;
+	}
+};
+
+//]]>
+
+</script>
+
+{% endif %}
+
+{% include 'ajaxify-cart' %}
+{%- include 'bold-currency-converter' -%}
+
+</body>
+</html>

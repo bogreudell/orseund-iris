@@ -1,0 +1,413 @@
+<div id="oi_banner">
+	{% if settings.show_homepage_video %}
+		{% if settings.carousel-video-mobile-thumbnail.jpg != '' %}
+			<div id="oi_mobile-videothumbnail" style="background:url('https:{{ 'carousel-video-mobile-thumbnail.jpg' | asset_url }}') center center no-repeat; background-size:cover;"></div>
+		{% endif %}
+		<video loop="true" muted autoplay="true" {% if settings.carousel-video-thumbnail.jpg != '' %} poster="https:{{ 'carousel-video-thumbnail.jpg' | asset_url }}" {% endif %} id="oi_hero_video">
+			{% if settings.carousel_video_hd_streaming_1 != empty %}
+				<source src="{{ settings.carousel_video_hd_streaming_1 }}" type="video/mp4">
+			{% endif %}
+			{% if settings.carousel_video_hd_streaming_2 != empty %}
+				<source src="{{ settings.carousel_video_hd_streaming_2 }}" type="video/mp4">
+			{% endif %}
+			{% if settings.carousel_video_sd_streaming != empty %}
+				<source src="{{ settings.carousel_video_sd_streaming}}" type="video/mp4">
+			{% endif %}
+			{% if settings.carousel_video_low_def_streaming != empty %}
+				<source src="{{ settings.carousel_video_low_def_streaming }}" type="video/mp4">
+			{% endif %}
+		</video>
+		<div id="oi_video-controls">
+			<div id="oi_controls-wrapper">
+				<button id="oi_play"><i class="fal fa-play"></i></button>
+				<button id="oi_pause"><i class="fal fa-pause"></i></button>
+				<button id="oi_volume-on"><i class="fal fa-volume-up"></i></button>
+				<button id="oi_volume-off"><i class="fal fa-volume-mute"></i></button>
+			</div>
+		</div>
+	{% else %}
+		{% if settings.show_slider %}
+		<div class="wide-container" id="homepage-slider">
+			<div id="homepage-slider-wrap">
+				<div class="homepage-slider-mask">
+					<div class="flexslider">
+						<ul class="slides">
+					        {% if settings.show_carousel_item_1 %}
+					        <li>
+					          {% if settings.carousel_item_1_link != empty %}
+					            {{ 'carousel-item-1.jpg' | asset_url | img_tag: settings.carousel_item_1_alt_text | link_to: settings.carousel_item_1_link }}
+					          {% else %}
+					            {{ 'carousel-item-1.jpg' | asset_url | img_tag: settings.carousel_item_1_alt_text }}
+					          {%endif%}
+								{% if settings.carousel_item_1_caption != empty %}
+									{% if settings.carousel_item_1_link != empty %}
+										<div class="slider-caption custom-font"><h4><a href="{{ settings.carousel_item_1_link }}">{{ settings.carousel_item_1_caption }}</a></h4></div>
+									{% else %}
+										<div class="slider-caption custom-font"><h4>{{ settings.carousel_item_1_caption }}</h4></div>
+									{%endif%}
+								{%endif%}
+					        </li>
+					        {% endif %}
+
+					        {% if settings.show_carousel_item_2 %}
+
+
+					        <li>
+					          {% if settings.carousel_item_2_link != empty %}
+					          {{ 'carousel-item-2.jpg' | asset_url | img_tag | link_to: settings.carousel_item_2_link }}
+					          {% else %}
+					          {{ 'carousel-item-2.jpg' | asset_url | img_tag }}
+					          {%endif%}
+
+
+								{% if settings.carousel_item_2_caption != empty %}
+									{% if settings.carousel_item_2_link != empty %}
+										<div class="slider-caption custom-font"><h4><a href="{{ settings.carousel_item_2_link }}">{{ settings.carousel_item_2_caption }}</a></h4></div>
+									{% else %}
+										<div class="slider-caption custom-font"><h4>{{ settings.carousel_item_2_caption }}</h4></div>
+									{%endif%}
+								{%endif%}
+					        </li>
+					        {% endif %}
+
+							{% if settings.show_carousel_item_3 %}
+					        	<li>
+								{% if settings.carousel_item_3_link != empty %}
+									{{ 'carousel-item-3.jpg' | asset_url | img_tag | link_to: settings.carousel_item_3_link }}
+								{% else %}
+									{{ 'carousel-item-3.jpg' | asset_url | img_tag }}
+					        	{%endif%}
+
+								{% if settings.carousel_item_3_caption != empty %}
+									{% if settings.carousel_item_3_link != empty %}
+										<div class="slider-caption custom-font"><h4><a href="{{ settings.carousel_item_3_link }}">{{ settings.carousel_item_3_caption }}</a></h4></div>
+									{% else %}
+										<div class="slider-caption custom-font"><h4>{{ settings.carousel_item_3_caption }}</h4></div>
+									{%endif%}
+								{%endif%}
+							</li>
+					        {% endif %}
+
+					        {% if settings.show_carousel_item_4 %}
+					        <li>
+					          {% if settings.carousel_item_4_link != empty %}
+					          {{ 'carousel-item-4.jpg' | asset_url | img_tag | link_to: settings.carousel_item_4_link }}
+					          {% else %}
+					            {{ 'carousel-item-4.jpg' | asset_url | img_tag }}
+					          {%endif%}
+								{% if settings.carousel_item_4_caption != empty %}
+									{% if settings.carousel_item_4_link != empty %}
+										<div class="slider-caption custom-font"><h4><a href="{{ settings.carousel_item_4_link }}">{{ settings.carousel_item_4_caption }}</a></h4></div>
+									{% else %}
+										<div class="slider-caption custom-font"><h4>{{ settings.carousel_item_4_caption }}</h4></div>
+									{%endif%}
+								{%endif%}
+					        </li>
+					        {% endif %}
+
+					        {% if settings.show_carousel_item_5 %}
+					        <li>
+					          {% if settings.carousel_item_5_link != empty %}
+					          {{ 'carousel-item-5.jpg' | asset_url | img_tag | link_to: settings.carousel_item_5_link }}
+					          {% else %}
+					            {{ 'carousel-item-5.jpg' | asset_url | img_tag }}
+					          {%endif%}
+								{% if settings.carousel_item_5_caption != empty %}
+									{% if settings.carousel_item_5_link != empty %}
+										<div class="slider-caption custom-font"><h4><a href="{{ settings.carousel_item_5_link }}">{{ settings.carousel_item_5_caption }}</a></h4></div>
+									{% else %}
+										<div class="slider-caption custom-font"><h4>{{ settings.carousel_item_5_caption }}</h4></div>
+									{%endif%}
+								{%endif%}
+					        </li>
+					        {% endif %}
+
+					        {% if settings.show_carousel_item_6 %}
+					        <li>
+					          {% if settings.carousel_item_6_link != empty %}
+					          {{ 'carousel-item-6.jpg' | asset_url | img_tag | link_to: settings.carousel_item_6_link }}
+					          {% else %}
+					            {{ 'carousel-item-6.jpg' | asset_url | img_tag }}
+					          {%endif%}
+							{% if settings.carousel_item_6_caption != empty %}
+								{% if settings.carousel_item_6_link != empty %}
+									<div class="slider-caption custom-font"><h4><a href="{{ settings.carousel_item_6_link }}">{{ settings.carousel_item_6_caption }}</a></h4></div>
+								{% else %}
+									<div class="slider-caption custom-font"><h4>{{ settings.carousel_item_6_caption }}</h4></div>
+								{%endif%}
+							{%endif%}
+					        </li>
+					        {% endif %}
+
+				      </ul>
+			      </div>
+		      </div>
+		    </div>
+		  </div>
+		{% endif %} <!-- end if statement re: show slider -->
+	{% endif %} <!-- end if homepage media if statement -->
+</div><!-- banner -->
+
+<div id="homepage-main-wrap">
+
+<a id="oi_shop-all" href="https://orseundiris.com/collections/shop">Shop All</a>
+
+<div id="homepage-main-wrap-2">
+
+<div class="container" id="main-block">
+
+<div class="homepage-main-mask">
+
+	{% if settings.show_promo_boxes %}
+
+	<div class="row">
+
+		<div class="promo-boxes">
+
+			{% case settings.number_of_text_promo_boxes %}
+			{% when 'one' %}
+
+			<div class="col-md-12">
+				<div class="promo-box-1-wrapper">
+					{% if settings.text_promo_box_1_link != empty %}
+						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			{% when 'two' %}
+
+			<div class="col-md-6 col-sm-6">
+				<div class="promo-box-1-wrapper">
+					{% if settings.text_promo_box_1_link != empty %}
+						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-6">
+				<div class="promo-box-2-wrapper">
+					{% if settings.text_promo_box_2_link != empty %}
+						<p><a href="{{ settings.text_promo_box_2_link }}">{{ settings.text_promo_box_2_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_2_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			{% when 'three' %}
+
+			<div class="col-md-4 col-sm-4">
+				<div class="promo-box-1-wrapper">
+					{% if settings.text_promo_box_1_link != empty %}
+						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<div class="promo-box-2-wrapper">
+					{% if settings.text_promo_box-2_link != empty %}
+						<p><a href="{{ settings.text_promo_box_2_link }}">{{ settings.text_promo_box_2_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_2_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<div class="promo-box-3-wrapper">
+					{% if settings.text_promo_box_3_link != empty %}
+						<p><a href="{{ settings.text_promo_box_3_link }}">{{ settings.text_promo_box_3_text }}</a></p>
+					{% else %}
+						<p><span>{{ settings.text_promo_box_3_text }}</span></p>
+					{%endif%}
+				</div>
+			</div>
+
+			{% endcase %}
+
+		</div>
+
+	</div>
+
+	{% endif %}
+
+<div class="row">
+
+<div class="col-md-12">
+
+{% case settings.number_of_promoboxs %}
+{% when 'one' %}
+<div id="hp-one-promobox" class="row">
+
+<div class="col-md-12">
+
+      {% if settings.promobox_item_1_link != empty %}
+        {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text | link_to: settings.promobox_item_1_link }}
+      {% else %}
+        {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text }}
+      {%endif%}
+
+</div>
+
+</div>
+
+{% when 'two' %}
+<div id="hp-two-promoboxs" class="row">
+
+	<div class="col-md-6 col-sm-6 col-xs-6">
+
+    {% if settings.promobox_item_1_link != empty %}
+      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text | link_to: settings.promobox_item_1_link }}
+    {% else %}
+      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text }}
+    {%endif%}
+
+	</div>
+
+	<div class="col-md-6 col-sm-6 col-xs-6">
+
+    {% if settings.promobox_item_2_link != empty %}
+      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text | link_to: settings.promobox_item_2_link }}
+    {% else %}
+      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text }}
+    {%endif%}
+
+	</div>
+</div>
+
+{% when 'three' %}
+<div id="hp-three-promoboxs" class="row">
+
+	<div class="col-md-4 col-sm-4 col-xs-4">
+
+    {% if settings.promobox_item_1_link != empty %}
+      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text | link_to: settings.promobox_item_1_link }}
+    {% else %}
+      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text }}
+    {%endif%}
+
+	</div>
+
+	<div class="col-md-4 col-sm-4 col-xs-4">
+
+    {% if settings.promobox_item_2_link != empty %}
+      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text | link_to: settings.promobox_item_2_link }}
+    {% else %}
+      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text }}
+    {%endif%}
+
+	</div>
+
+	<div class="col-md-4 col-sm-4 col-xs-4">
+
+    {% if settings.promobox_item_3_link != empty %}
+      {{ 'promobox-item-3.jpg' | asset_url | img_tag: settings.promobox_item_3_alt_text | link_to: settings.promobox_item_3_link }}
+    {% else %}
+      {{ 'promobox-item-3.jpg' | asset_url | img_tag: settings.promobox_item_3_alt_text }}
+    {%endif%}
+
+	</div>
+</div>
+{% endcase %}
+
+<div id="featured">
+
+	{% comment %}
+	<div class="title-bar custom-font">
+		<h2>{{ 'general.homepage.featured_products' | t }}</h2>
+	</div>
+	{% endcomment %}
+
+	<div class="row">
+		<ul class="featured-products product-grid">
+		{% for product in collections[settings.which-collection].products limit:8 %}
+			<li class="col-md-3{% cycle ' alpha', '', '', ' omega' %} col-sm-3 col-xs-12">
+				{% include 'product-listing' %}
+	   		</li>
+		{% endfor %}
+		</ul>
+	</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% comment %}
+<script type="text/javascript" charset="utf-8">
+
+jQuery(document).ready(function() {
+
+if ($(window).width() > 960) {
+	$(window).scroll(function(fade1){
+	    var fadeStart=10 // 100px scroll or less will equiv to 1 opacity
+	    windowheight= $(window).height(),
+	    fadeUntil= (windowheight), // 200px scroll or more will equiv to 0 opacity
+	    fading = $('.homepage-slider-mask');
+	    var offset = $("#main-block").offset().top - $(window).scrollTop()
+	        ,opacity=1;
+
+	    if( offset<=fadeStart ){
+	        opacity=0;
+	    }else if( offset<=fadeUntil ){
+	        opacity=offset/fadeUntil;
+	    }
+	    fading.css('opacity',opacity);
+	})
+}
+
+if ($(window).width() > 960) {
+	$(window).scroll(function(fade2){
+	    var fadeStart=0 // 100px scroll or less will equiv to 1 opacity
+	    windowheight= $(window).height(),
+	    fadeUntil= (windowheight), // 200px scroll or more will equiv to 0 opacity
+	    fading = $('#homepage-main-wrap-2');
+	    var offset = $("#footer-block").offset().top - $(window).scrollTop()
+	        ,opacity=1;
+
+	    if( offset<=fadeStart ){
+	        opacity=0;
+	    }else if( offset<=fadeUntil ){
+	        opacity=offset/fadeUntil;
+	    }
+	    fading.css('opacity',opacity);
+	})
+}
+
+});
+
+</script>
+{% endcomment %}
+
+{% if settings.show-instagram-homepage %}
+
+	<div class="instagram-wrapper">
+
+		<div class="title-bar custom-font">		
+			{{ 'as-seen-on-social.svg' | asset_url | img_tag: 'As seen on social' }}
+		</div>
+
+		<div id="instafeed"></div>
+
+		<a href="https://www.instagram.com/orseund_iris/" target="_blank" id="oi_instagram-cta">@orseund_iris</a>
+
+	</div>
+
+{% endif %}

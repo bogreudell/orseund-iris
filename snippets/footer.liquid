@@ -1,0 +1,191 @@
+
+
+<footer id="footer-block">
+
+<div class="oi_upper-footer">
+
+		{{ 'newsletter-graphic.svg' | asset_url | img_tag: "Newsletter" }}
+
+		{% form 'customer' %}
+
+		  {% if form.posted_successfully? %}
+		    <p class="alert-success alert">{{ 'general.newsletter_form.thanks' | t }}</p>
+		  {% endif %}
+
+		  {% include 'form-errors-custom' %}
+
+		  <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+		  <div id="newsletter-signup" class="form-group">
+		    <input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Subscriber" />
+		    <input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Newsletter" />
+		    {% comment %}
+		    <div id="newsletter-email-form-title">
+					<label for="newsletter-email">{{ 'general.newsletter_form.header_text' | t }}</label>
+				</div>
+			{% endcomment %}
+		    <div id="newsletter-email-field-with-button">
+					<input type="email" class="email form-control" placeholder="Email" id="newsletter-email" name="contact[email]" />
+		    	<input type="submit" class="btn btn-default" value="Subscribe" />
+				</div>
+		  </div>
+		{% endform %}
+
+	{%if settings.sm_facebook or settings.sm_twitter or settings.sm_youtube or settings.sm_flickr or settings.sm_pinterest %}
+		<ul id="sm-icons" class="clearfix">
+			{%if settings.sm_email %}
+				<li id="sm-email" class="oi_social-button">
+					<a href="mailto:{{settings.sm_email_link}}">
+						<i class="fal fa-envelope"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_twitter %}
+				<li id="sm-twitter" class="oi_social-button">
+					<a href="{{settings.sm_twitter_link}}">
+						<i class="fab fa-twitter"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_facebook %}
+				<li id="sm-facebook" class="oi_social-button">
+					<a href="{{settings.sm_facebook_link}}">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_pinterest %}
+				<li id="sm-pinterest" class="oi_social-button">
+					<a href="{{settings.sm_pinterest_link}}">
+						<i class="fab fa-pinterest-p"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_youtube %}
+				<li id="sm-youtube" class="oi_social-button">
+					<a href="{{settings.sm_youtube_link}}">
+						<i class="fab fa-youtube"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_flickr %}
+				<li id="sm-flickr" class="oi_social-button">
+					<a href="{{settings.sm_flickr_link}}">
+						<i class="fab fa-flickr"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_instagram %}
+				<li id="sm-instagram" class="oi_social-button">
+					<a href="{{settings.sm_instagram_link}}">
+						<i class="fab fa-instagram"></i>
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+	{% endif %}
+<!-- End Newsletter -->
+
+</div>
+
+<div class="oi_footer-navigation">
+
+	{% if settings.which-linklist-footer-menu != '' %}
+
+				<div class="col-md-6 col-lg-6 col-sm-12 header-left">
+
+					<nav class="navbar" role="navigation">
+
+						<div>
+							<ul class="nav navbar-nav">
+						      {% for link in linklists[settings.which-linklist-footer-menu].links %}
+
+						        {% assign child_list_handle = link.title | handleize %}
+						        {% if linklists[child_list_handle].links != blank %}
+						        <li class="dropdown">
+						          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+						            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
+						          </a>
+						          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						            {% for childlink in linklists[child_list_handle].links %}
+						            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+						            {% endfor %}
+						          </ul>
+						        </li>
+						        {% else %}
+						          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+						        {% endif %}
+						      {% endfor %}
+
+								{% if shop.customer_accounts_enabled %}
+						        {% if customer %}
+						        	<li><a href="/account">{{ 'layout.customer.welcome' | t: name: customer.first_name }}</a></li>
+						        	<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
+						        	<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+						        	<li class="visible-xs"><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></li>
+						        {% else %}
+							      	<li><a href="#login-popup" class="various">{{ 'layout.customer.log_in' | t }}</a></li>
+					       			<li>{{ 'customer.register.title' | t | customer_register_link }}</li>
+						        {% endif %}
+						      		</li>
+						      	{% endif %}
+
+						    </ul>
+						</div>
+
+					</nav>
+
+				</div>
+
+				{% endif %}
+
+					{% if settings.which-linklist-secondary-footer-menu != '' %}
+
+				<div class="col-md-6 col-lg-6 col-sm-12 header-left">
+
+					<nav class="navbar" role="navigation">
+
+						<div>
+							<ul class="nav navbar-nav">
+						      {% for link in linklists[settings.which-linklist-footer-menu].links %}
+
+						        {% assign child_list_handle = link.title | handleize %}
+						        {% if linklists[child_list_handle].links != blank %}
+						        <li class="dropdown">
+						          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+						            <span class="nav-label">{{ link.title | escape }}</span><span class="caret"></span>
+						          </a>
+						          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						            {% for childlink in linklists[child_list_handle].links %}
+						            <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+						            {% endfor %}
+						          </ul>
+						        </li>
+						        {% else %}
+						          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+						        {% endif %}
+						      {% endfor %}
+
+								{% if shop.customer_accounts_enabled %}
+						        {% if customer %}
+						        	<li><a href="/account">{{ 'layout.customer.welcome' | t: name: customer.first_name }}</a></li>
+						        	<li><a href="/account">{{ 'customer.account.title' | t }}</a></li>
+						        	<li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+						        	<li class="visible-xs"><a href="/cart">{{ 'cart.general.checkout_mobile' | t }}</a></li>
+						        {% else %}
+							      	<li><a href="#login-popup" class="various">{{ 'layout.customer.log_in' | t }}</a></li>
+					       			<li>{{ 'customer.register.title' | t | customer_register_link }}</li>
+						        {% endif %}
+						      		</li>
+						      	{% endif %}
+
+						    </ul>
+						</div>
+
+					</nav>
+
+				</div>
+
+				{% endif %}
+	</div>
+
+</footer>

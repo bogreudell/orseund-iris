@@ -1,0 +1,33 @@
+{% if paginate.pages > 1 %}
+<div class="pagination">
+
+  <ul>
+    {% if paginate.previous %}
+      <li class="pagination-arrow"><a href="{{ paginate.previous.url }}" title="{{ 'general.pagination.previous' | t }}"><i class="fa fa-chevron-left"></i></a></a></li>      
+    {% else %}
+      <li class="prev disabled"><a href="#" onclick="return false;">&laquo; {{ 'general.pagination.previous' | t }}</a></li>
+    {% endif %}
+    
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <li class="pagination-number">{{ part.title | link_to: part.url }}</li>
+      {% else %}
+        {% if part.title == '&hellip;' %}
+        <li class="ellipsis disabled"><a href="#" onclick="return false;">{{ part.title }}</a></li>
+        {% else %}
+        <li class="active pagination-number">{{ part.title | link_to: part.url }}</li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}     
+
+    {% if paginate.next %}
+      <li class="pagination-arrow"><a href="{{ paginate.next.url }}" title="{{ 'general.pagination.next' | t }}"><i class="fa fa-chevron-right"></i></a></li>
+      
+      
+    {% else %}
+      <li class="next disabled"><a href="#" onclick="return false;">{{ 'products.general.next' | t }} &raquo;</a></li>
+    {% endif %}    
+  </ul>
+
+</div>
+{% endif %}

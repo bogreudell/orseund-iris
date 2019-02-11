@@ -1,0 +1,82 @@
+<div class="container">
+
+<div class="row">
+
+<div class="title-bar custom-font">
+	<h2>{{ 'cart.general.title' | t }}</h2>
+	<div class="clear"></div>
+</div>
+
+{% if cart.item_count == 0 %}
+	<h3 class="empty-cart">{{ 'cart.general.empty' | t }}, <a href="/collections/all">{{ 'cart.general.continue_browsing_html' | t }}</a></h3>
+{% else %}
+
+	<script type="text/javascript">
+		function remove_item(id) {
+			document.getElementById('updates_'+id).value = 0;
+			document.getElementById('cartform').submit();
+		}
+	</script>
+	
+	<form action="/cart" method="post" id="cartform">
+	
+	<div class="col-md-9">
+
+		<ul>
+				{% for item in cart.items %}
+					<li class="row">
+						<div class="cart-table-image col-md-3">
+							<a class="cart_thumb" href="{{item.product.url}}" title="View {{item.title}} Page">
+								<img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" class="img-responsive" />
+							</a>
+						</div>
+						<div class="cart-table-title col-md-9 custom-font">
+							<p href="{{item.url}}" title="View {{item.title | escape }}">{{ item.product.title }}</p>
+							{% unless item.variant.title contains 'Default' %}
+							  <p class="cart-variants">{{ item.variant.title }}</p>
+							{% endunless %}
+							<p>{{ item.price | money }}</p>
+							<input class="number" type="text" size="2" name="updates[{{item.variant.id}}]" id="updates_{{item.variant.id}}" value="{{item.quantity}}"/><span class="cart-quantity-header">{{ 'cart.general.quantity' | t }}</span>
+							<a class="delete-button" href="#" onclick="remove_item({{ item.variant.id }}); return false;">&nbsp;</a>
+						</div>
+					</li>
+				{% endfor %}
+						
+			</ul>	
+		
+	</div>
+		
+	<div class="col-md-3">
+		
+		<div class="title-bar custom-font">
+			<div id="cart-total-header">{{ 'cart.general.total' | t }}</div>
+			<div id="cart-total-final-price">{{ cart.total_price | money }}</div>				
+		</div>
+		
+		{% if settings.allow_note %}
+		<div id="checkout-add-note">		
+        	<h6>{{ 'cart.general.note' | t }}&hellip;</h6>
+        	<textarea id="note" name="note" class="form-control">{{ cart.note }}</textarea>
+		</div>	        	
+		{% endif %}
+		
+		<div id="checkout-buttons">
+			<input id="update_quantities" type="submit" value="{{ 'cart.general.update' | t }}" title="{{ 'cart.general.update' | t }}" name="update" class="btn btn-default" />
+			<input id="cart_submit" type="submit" value="{{ 'cart.general.checkout' | t }}" name="checkout" class="btn btn-default" />
+			{% if additional_checkout_buttons %}
+			<div id="additional-checkout-buttons">
+				<span id="additional-checkout-buttons-label">{{ 'cart.general.alt_checkout' | t }}:</span>
+				{{ content_for_additional_checkout_buttons }}
+			</div>
+			{% endif %}
+		</div>
+		
+	</div>
+		
+	</form>
+
+{% endif %}
+
+</div>
+
+</div>

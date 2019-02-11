@@ -1,0 +1,46 @@
+<div class="bottom-footer">
+
+	<div class="container">
+	{% comment %}
+	{%if settings.sm_facebook or settings.sm_twitter or settings.sm_youtube or settings.sm_flickr or settings.sm_pinterest %}
+	<div class="row sm-icons-wrapper">
+		<h3>{{ 'layout.footer.social_title' | t }}</h3>
+		<ul id="sm-icons" class="clearfix">
+			{%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}">{{ 'smicons-twitter.png' | asset_url | img_tag }}</a></li>{% endif %}
+			{%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}">{{ 'smicons-facebook.png' | asset_url | img_tag }}</a></li>{% endif %}
+			{%if settings.sm_pinterest %}<li id="sm-pinterest"><a href="{{settings.sm_pinterest_link}}">{{ 'smicons-pinterest.png' | asset_url | img_tag }}</a></li>{% endif %}
+			{%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}">{{ 'smicons-youtube.png' | asset_url | img_tag }}</a></li>{% endif %}
+			{%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}">{{ 'smicons-flickr.png' | asset_url | img_tag }}</a></li>{% endif %}
+			{%if settings.sm_instagram %}<li id="sm-instagram"><a href="{{settings.sm_instagram_link}}">{{ 'smicons-instagram.png' | asset_url | img_tag }}</a></li>{% endif %}
+			
+		</ul>
+	</div>
+	{% endif %}{% endcomment %}
+
+	{% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google %}
+		<div class="row footer-payment-methods-wrapper">
+			<h3>{{ 'layout.footer.accepted_payments' | t }}</h3>
+			<div id="footer-payment-methods">
+				{% if settings.show_amex %}       {{ 'card-american-express.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_discover %}   {{ 'card-discover.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_visa %}       {{ 'card-visa.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_mastercard %} {{ 'card-mastercard.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_maestro %}    {{ 'card-maestro.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_cirrus %}     {{ 'card-cirrus.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_paypal %}     {{ 'card-paypal.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_amazon %}     {{ 'card-amazon.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_shopify %}    {{ 'card-shopify.png' | asset_url | img_tag }} {% endif %}
+				{% if settings.show_sage %}		  {{ 'card-sage.png' | asset_url | img_tag }} {% endif %}
+			</div>
+		</div>
+	{% endif %}
+
+{% comment %}		<div class="row copyright-designed-by">
+			<div class="col-md-12">
+				<p><a href="/">{{ shop.name }}</a> | {{ powered_by_link }} | {% if settings.show_designed_by %}{{ 'layout.footer.designed_by' | t }} <a href="http://www.wetheme.com" title="Designed by WeTheme">WeTheme</a>{% endif %}</p>
+			</div>
+		</div> {% endcomment %}
+
+	</div><!-- container -->
+
+</div><!-- bottom-footer -->

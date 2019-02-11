@@ -1,0 +1,322 @@
+{% layout none %}
+
+{% assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency %}
+{% assign formatted_initial_value_stripped = formatted_initial_value | strip_html %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>{{ 'gift_cards.issued.title' | t: value: formatted_initial_value_stripped, shop: shop.name }}</title>
+  <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
+  
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  <link rel="stylesheet" href="https://use.typekit.net/cyt2nnx.css">
+
+  {{ 'gift-card.css' | shopify_asset_url | stylesheet_tag }}
+  {% comment %} {{ 'gift-card-custom.css' | asset_url | stylesheet_tag }} {% endcomment %} 
+  {{ 'modernizr.gift-card.js' | shopify_asset_url | script_tag }}
+  <!-- <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> -->
+  
+<style>
+
+  body {
+    background: #D7BCBC;
+  }
+
+  .meta-wrap {
+    width: 100%;
+    position:absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #header img {
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 20px;
+  }
+
+  .wrap {
+    position: relative;
+  }
+
+  .wrap > h2 {
+    position: absolute;
+    left: 0;
+    top: -36px;
+    font-family: adobe-garamond-pro, serif;
+    font-weight: 400;
+    font-style: italic;
+    color: #000;
+  }
+  
+  #gift-card-amount {
+    position: absolute;
+    top: -50px;
+    font-size: 1.5em;
+    padding-right: 0;
+  }
+  
+  #gift-card-amount strong {
+    text-shadow: none;
+    color: #000;
+  }
+
+  #gift-card-outer-container {
+    padding: 0;
+  	background: #D7BCBC;
+  	box-shadow: none;
+  }
+
+  #gift-card-inner-container {
+    background-color: unset;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  #gift-card-holder {
+    position: relative;
+    margin: 0;
+  }
+
+  #left-graphic {
+    position: absolute;
+    left: -58px;
+    top: 50%;
+    z-index: 5;
+    width: 95px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #right-graphic {
+    position: absolute;
+    right: -140px;
+    top: 50%;
+    z-index: 5;
+    width: 40%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #gift-card:before {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  #gift-card img {
+    opacity: 0;
+    border-radius: 0;
+    -webkit-transition: .2s opacity ease-in;
+    -o-transition: .2s opacity ease-in;
+    transition: .2s opacity ease-in;
+  }
+
+  #gift-card img.fade-in {
+    opacity: 1;
+  }
+    
+  #gift-card-instructions {
+    margin-top: 30px;
+    font-family: adobe-garamond-pro, serif;
+    font-size: 1.1em;
+    font-weight: 400;
+    font-style: italic;
+    color: #000;
+  }
+
+  #gift-card-instructions span {
+    font-style: normal;
+  }
+
+  #gift-card-actions {
+    position: relative;
+    height: 30px;
+    border-top: 0;
+  }
+  
+  #gift-card-code-outer {
+    top: 0;
+    left: 0;
+    width: 60%;
+  }
+  
+  #gift-card-code-inner {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+    padding: 1.65em 0 1.25em 1.5em;
+    border: 1px solid #000;
+    box-shadow: none;
+    font-size: .6em;
+    text-align: left;
+    background:rgb(255,255,255);
+    background:rgba(255,255,255,.78);
+  }
+
+  #gift-card-code-inner strong {
+    border: 0;
+    padding: 0;
+    color: #000;
+    font-family: adobe-garamond-pro, serif;
+    font-weight: 400;
+    font-weight: normal;
+  }
+  
+  #gift-card-actions .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    width: 40%;
+    border-radius: 0;
+    background: #000;
+    color: #fff;
+    font-family: helvetica neue;
+    font-weight: bold;
+    font-size: .75em;
+  }
+    
+  #gift-card-header{
+  	text-align: center !important;
+  }
+  
+  #gift-card-header h2{
+  	float: none;
+  }
+
+  @media all and (max-width:750px) {
+    #right-graphic,
+    #left-graphic {
+      display: none;
+    }
+  }
+  
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type='text/javascript'>
+    function selectText(element) {
+
+        var doc = document;
+        var text = doc.getElementById(element);
+
+        if (doc.body.createTextRange) { // ms
+            var range = doc.body.createTextRange();
+            range.moveToElementText(text);
+            range.select();
+        } else if (window.getSelection) { // moz, opera, webkit
+            var selection = window.getSelection();
+            var range = doc.createRange();
+            range.selectNodeContents(text);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
+    }
+
+    window.onload = function() {
+      document.getElementById('gift-card-image').classList.add('fade-in');
+    }
+  </script>
+
+</head>
+
+<body>
+  
+  <div class="meta-wrap">
+    <header role="banner" id="header">
+        <img src="{{ 'orseund_iris_email_logo.png' | asset_img_url: 'original' }}" alt="">
+    </header>
+    
+    <div class="wrap">
+
+        <h2>Gift Card</h2>
+
+        <div id="gift-card-amount" class="{% if initial_value_size > 6 %}medium{% endif %}">
+          {% if gift_card.balance != gift_card.initial_value %}
+            <span class="tooltip-container"><span class="tooltip-label">{{ gift_card.balance | money }} <small>left</small></span><span class="tooltip-triangle"></span></span>
+          {% endif %}
+          <strong>{{ formatted_initial_value }}</strong>
+        </div>
+
+        <main role="main">
+
+            <div id="gift-card-outer-container" {% if gift_card.expired or gift_card.enabled != true %}class="disabled"{% endif %}>
+              <div id="gift-card-inner-container">
+
+                <div id="gift-card-holder">
+                  <div id="left-graphic">
+                  <img src="{{ 'abridged-logo.png' | asset_img_url: 'original' }}" alt="">
+                  </div>
+
+                  <div id="right-graphic">
+                    <img src="{{ 'newsletter-graphic.png' | asset_img_url: 
+                    'original' }}" alt="">
+                  </div>
+                  <div id="gift-card">
+                    <img id="gift-card-image" src="{{ 'gift-card-splash.jpg' | asset_img_url: 'original' }}" alt="Gift card illustration">
+                    {% assign initial_value_size = formatted_initial_value | size %}
+                    {% assign code_size = gift_card.code | format_code | size %}
+                  </div>
+                </div>
+
+                <div id="gift-card-instructions">
+                  <p>Use this code at check out to redeem your Orseund Iris Goodies  <span>&hearts;</span></p>
+                </div>
+
+                <div id="gift-card-actions">
+                  <a href="{{ shop.url }}" class="btn center" target="_blank">{{ 'gift_cards.issued.shop_link' | t }}</a>
+                  <div id="gift-card-code-outer" class="{% if code_size <= 25 %}large{% elsif code_size > 25 and code_size <= 30 %}medium{% else %}small{% endif %}" onclick="selectText('gift-card-code-digits');">
+                      <div id="gift-card-code-inner">
+                        <strong id="gift-card-code-digits">{{ gift_card.code | format_code }}</strong>
+                      </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+        </main> <!-- / Main -->
+  </div><!-- / Wrap -->
+</div><!-- / Meta-Wrap -->
+
+</body>
+</html>
+
+<!-- printable link for re-use if desired -->
+{% comment %}                <a href="#" class="action-link left" onclick="window.print();"><i class="ico-16 print"></i>{{ 'gift_cards.issued.print' | t }}</a>{% endcomment %}
+<!-- end printable link -->
+
+<!-- expiry date code for re-use if desired -->
+{% comment %}<header id="gift-card-header">
+  <h2>{{ 'gift_cards.issued.subtext' | t }}</h2>
+  {% unless gift_card.enabled %}
+    <span class="tag">{{ 'gift_cards.issued.disabled' | t }}</span>
+  {% endunless %}
+  {% if gift_card.expired and gift_card.enabled %}
+     <span class="tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</span>
+  {% endif %}
+  {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
+    <span class="tag light">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</span>
+  {% endif %}
+</header>{% endcomment %}
+<!-- end expiry date code -->

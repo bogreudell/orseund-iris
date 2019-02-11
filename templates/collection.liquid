@@ -1,0 +1,97 @@
+<div id="collections-main" class="{{ collection.handle }}">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+	{% include 'breadcrumb' %}
+
+	{% if settings.show_collection_promobox %}
+
+	<div class="collection-promo-box">
+
+		{{ 'promobox-item-5.jpg' | asset_url | img_tag: settings.advert_item_5_alt_text | link_to: settings.advert_item_5_link }}
+
+	</div>
+
+	{% endif %}
+
+	{% comment %}
+	<div class="title-bar custom-font collection-header">
+		{% if collection.handle == 'all' %}
+			<h2>{{ 'products.general.products_title' | t }}</h2>
+		{% else %}
+			<h2>{{ collection.title }}</h2>
+		{% endif %}
+		<div class="clear"></div>
+	</div>
+	{% endcomment %}
+
+	{% if collection.image != empty %}
+	<div id="collection-description">
+
+		{% if collection.handle == 'all' %}
+			{% if collection.image %}
+				{{ collection.image.src | collection_img_url: 'small' | img_tag: "collection.image.alt" }}
+			{% endif %}
+		{% elsif collection.handle %}
+			{% if collection.image %}
+				{{ collection.image.src | collection_img_url: 'small' | img_tag: "collection.image.alt" }}
+			{% endif %}
+		{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
+		{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
+			{% if collection.image %}
+				{{ collection.image.src | collection_img_url: 'small' | img_tag: "collection.image.alt" }}
+			{% endif %}
+		{% endif %}
+
+		{% if collection.description == empty %}
+			<div class="clear"></div>
+		{% endif %}
+
+	{% endif %}
+
+
+	{% if collection.description != empty %}
+
+			<div class="description-content">{{ collection.description }}</div>
+
+			<div class="clear"></div>
+
+		{% endif %}
+	</div>
+
+	  <section class="clearfix">
+
+	    {% paginate collection.products by settings.products-per-page %}
+	      {% if collection.products.size > 0 %}
+
+	    	<div class="row">
+
+	        <ul class="product-grid clearfix">
+	        {% for product in collection.products %}
+				<li class="col-md-4{% cycle ' alpha', ' mobile', ' omega' %} col-sm-6 col-xs-6">
+					{% include 'product-listing' %}
+				</li>
+	        {% endfor %}
+	        </ul>
+
+			</div>
+
+	        {% include 'pagination' %}
+
+	      {% else %}
+	        <div class="no-products-found">{{ 'collections.general.no_matches' | t }}</div>
+	      {% endif %}
+	    {% endpaginate %}
+	  </section>
+
+	  </div>
+
+		</div>
+
+	</div>
+
+</div>

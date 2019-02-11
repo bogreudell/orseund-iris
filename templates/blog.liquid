@@ -1,0 +1,45 @@
+<div class="container">
+
+<section id="blog_posts" class="collection">
+	{% paginate blog.articles by 6 %}
+
+	<div class="row">
+	
+		<div class="col-md-12 blog-main">
+		
+		{% include 'breadcrumb' %}
+	
+		<ul>
+			{% for article in blog.articles %}
+				<li class="blog-post">
+				<h2 class="indiv-blog-title"><a href="{{article.url}}">{{ article.title }}</a></h2>
+				<h3 class="indiv-blog-date"><time class="updated" datetime="{{ article.published_at | date: format: 'long' }}" pubdate>{{ article.published_at | date: format: 'long' }}</time></h3>
+				<div class="indiv-blog-content">
+					{{ article.excerpt_or_content }}
+					
+					{% include 'blog-tags' %}
+					
+					<p class="blog-main-view-post-wrapper"><a href="{{article.url}}" class="btn btn-default">{{ 'blogs.article.view_post' | t }}</a></p>
+				</div>
+				</li>
+			{% endfor %}
+		</ul>
+			
+		</div>
+		
+	</div>
+		
+		<div class="row">
+		
+		<div class="col-md-12">
+		{% if paginate.pages > 1 %}
+			{% include 'pagination' %}
+		{% endif %}
+		</div>
+		
+		</div>
+		
+	{% endpaginate %}
+</section>
+
+</div>

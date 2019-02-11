@@ -1,0 +1,19 @@
+<li class="comment comment-wrapper row">
+
+	<div class="col-md-1">
+		<img src="//www.gravatar.com/avatar/{{ comment.email | remove: ' ' | strip_newlines | downcase | md5 }}" class="img-responsive" />
+	</div>
+
+	<div class="col-md-11">
+		<div class="comment-author">
+			{% capture author %}<strong>{{ comment.author }}</strong>{% endcapture %}
+			{% capture date %}<strong><time datetime="{{ comment.created_at | date: format: 'long' }}">{{ comment.created_at | date: format: 'long' }}</time></strong>{% endcapture %}
+			{{ 'blogs.article.comment_meta_html' | t: author: author, date: date }}
+		</div>
+
+		<div class="comment-content">
+			{{ comment.content }}         
+		</div>
+	</div>
+  
+</li> <!-- end .comment -->

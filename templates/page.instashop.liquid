@@ -1,0 +1,31 @@
+<div class="instashop-gallery-header">
+	{{ 'as-seen-on.png' | asset_url | img_tag }}
+	{{ '@-orseund-iris.png' | asset_url | img_tag }}
+</div>
+
+<div class="instashop-gallery" data-gallery="default"></div>
+
+<style type="text/css">
+	.instashop-gallery-header {
+		position:relative;
+		height: 150px;
+	}
+	.instashop-gallery-header img {
+		position: absolute;
+		width: 300px;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+	.instashop-gallery-header img:first-of-type {
+		left: 50px;
+	}
+	.instashop-gallery-header img:last-of-type {
+		right: 50px;
+	}
+	.instashop-gallery {
+		/*margin-top:40px;*/
+	}
+</style>

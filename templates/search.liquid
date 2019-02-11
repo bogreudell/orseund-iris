@@ -1,0 +1,94 @@
+{% paginate search.results by 12 %}
+
+<div class="container">
+
+	<div class="row">
+
+	<section id="search_results" class="collection">
+		<header>
+		
+		<div class="title-bar custom-font">
+			<h2>{{ 'general.search.search_results' | t }}{% if search.terms != empty %} <span class="lowercase">for</span> {{ search.terms | escape }}{% endif %}</h2>
+		</div>
+			
+		</header>
+
+		{% if search.results_count > 0 %}
+		<ul class="product-grid clearfix">
+			{% for item in search.results %}
+				<li class="{% if item.featured_image %}product{% else %}page{% endif %} col-md-3 col-sm-3{% cycle ' alpha clearcolumn', '', '', ' omega' %}">
+  					<div class="indiv-product">
+
+  					{% if item.object_type == 'product' %}
+
+						{% if item.compare_at_price_max > item.price %}
+							<div class="sale-badge">Sale</div>
+						{% endif %}
+
+						<a href="{{ item.url | within: collection }}">
+							<div class="indiv-item-wrap">
+								<img src="{{ item.images[1] | product_img_url: 'original' }}" alt="">
+								<img src="{{ item.featured_image | product_img_url: 'original' }}'">
+							</div>
+						</a>
+
+						<div class="hp-title custom-font">
+						<a href="{{ item.url | within: collection }}">
+						{{item.title}}<br />
+							<span class="money-styling">
+						  {% if item.price_varies %}
+						    <small><i style="font-family:'linotype-didot', 'acumin-pro', sans-serif;">from</i>{% comment %}{{ 'items.general.from' | t }}{% endcomment %}</small> {{ item.price_min | money }}
+						  {% else %}
+						    {{ item.price_min | money }}
+						  {% endif %}
+						</span>
+						</a>
+
+					{% else %}
+						
+						{% if item.compare_at_price_max > item.price %}
+							<div class="sale-badge">Sale</div>
+						{% endif %}
+
+						{% if item.featured_image %}{% else %}
+							<div class="product-grid-page-label">page</div>
+						{% endif %}
+						
+						<a href="{{item.url}}">
+							{% if item.featured_image %}
+								<img src="{{ item.featured_image | product_img_url: 'large'}}" alt="{{ item.description | strip_html | truncate: 75 }} click for more information" />
+							{% endif %}
+						</a>
+						<a href="{{item.url}}">
+							<h3>{{ item.title }}</h3>
+							<h5>{{ item.content | strip_html | truncatewords: 20 | highlight: search.terms }}</h5>
+						</a>
+
+					{% endif %}
+					</div>
+				</li>
+			{% endfor %}	
+		</ul>
+		{% else %}
+		
+
+		{% if search.terms != empty %}
+			<h3 class="no-results">{{ 'general.search.no_results_html' | t: terms: search.terms  }}</h3>
+		{% else %}
+			<h3 class="no-results">{{ 'general.search.first_search' | t }}</h3>
+		{% endif %}
+		
+		
+		
+		
+			
+		{% endif %}
+		{% if search.results_count > 12 %}
+        {% include 'pagination' %}
+		{% endif %}
+	</section>
+	
+	</div>
+	
+	</div>
+{% endpaginate %}
