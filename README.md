@@ -3,7 +3,7 @@ Custom Shopify Theme for Orseund Iris
 
 ## Code Clean-Up
 
-- [ ] Set up Github repository for version tracking
+- [x] Set up Github repository for version tracking
 - [ ] Remove unnecessary scripts and frameworks
 - [ ] Remove unnecessary markup and liquid code
 - [ ] Divide CSS into template-specific stylesheets
