@@ -6,9 +6,7 @@ Custom Shopify Theme for Orseund Iris
 - [x] Set up Github repository for version tracking
 - [ ] Remove unnecessary scripts and frameworks
 - [x] Remove unnecessary markup and liquid code
-- [ ] Divide CSS into template-specific stylesheets
-- [ ] Set up Stylus directory
-- [ ] Install code compiler (time-permitting)
+- [x] Set up Stylus
 - [ ] Remove unnecessary homepage custom inputs
 
 ## Site Tune-Up 1.0
@@ -32,3 +30,8 @@ Custom Shopify Theme for Orseund Iris
 - [ ] Research and consultation for Shopify custom fields
 - [ ] Research and consultation "Back in stock" sign-up feature
 - [ ] Resolve media queries for product CTAs
+
+## Deferred
+
+- [ ] Install code compiler (time-permitting)
+- [ ] Divide CSS into template-specific stylesheets: we'll be doing this as we go, transitioning from the style.liquid.css to the stylus templates
