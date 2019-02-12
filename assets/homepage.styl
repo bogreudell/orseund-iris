@@ -1,0 +1,41 @@
+body
+	&.template-index
+		.main
+			#homepage-main-wrap
+				#featured
+					position relative
+					
+					.featured-products.product-grid
+						width 100%
+						white-space nowrap
+						overflow-x hidden
+						
+						&::-webkit-scrollbar
+							display none !important
+						
+						li
+							width 25%
+					
+					#scroll-left,
+					#scroll-right
+						position absolute
+						top 50%
+						transform translateY(-50%)
+						border 0
+						background none
+						color #fff
+						text-shadow 0 0 30px #222
+						font-size 5rem
+						
+						&:focus
+							outline none
+					
+					#scroll-left
+						left 10px
+						transition .2s opacity ease-in-out
+						
+						&.hidden
+							opacity 0
+					
+					#scroll-right
+						right 10px
