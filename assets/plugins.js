@@ -4,19 +4,19 @@ Envy by WeTheme (http://www.wetheme.com)
 Plugins
 
 1. Wrapper for ConsoleLog
-2. Zoom 1.7.13
+2. Zoom 1.7.13 // scrap
 3. Bootstrap 3.3.1
-4. HoverIntent
+4. HoverIntent // scrap
 5. FlexSlider 2.2.2
 6. jQuery MouseWheel 3.0.6
-7. FancyBox 2.1.5
-9. jQuery Cookie 1.4.1
-10. Instafeed 1.3.2
-11. Sidr 1.2.1
-12. Waypoints 2.0.3
-14. matchHeight 0.5.2
-15. Sticky Plugin 1.0.0
-16. Sticky-kit 1.1.1
+7. FancyBox 2.1.5 // scrap
+9. jQuery Cookie 1.4.1 // can we scrap this?
+10. Instafeed 1.3.2 // scrap
+11. Sidr 1.2.1 // can we scrap this?
+12. Waypoints 2.0.3 // can we scrap this?
+14. matchHeight 0.5.2 // can we scrap this?
+15. Sticky Plugin 1.0.0 // consider scrapping 
+16. Sticky-kit 1.1.1 // consider scrapping
 
 Last Update:
 4th February
