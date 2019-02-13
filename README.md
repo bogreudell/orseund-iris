@@ -14,7 +14,7 @@ Custom Shopify Theme for Orseund Iris
 - [ ] Global: Consolidate Shop Social and homepage Instagram grid
 - [x] Global: Fix footer logo alignment (replace asset)
 - [x] Global: Remove margins and reduce gutters for product grids
-- [ ] Global: Make product titles overlay w/ text shadow
+- [x] Global: Make product titles overlay w/ text shadow
 - [ ] Global: Align "thanks for joining!" mailing list notice to site typography
 - [ ] Global: Customer service link to info (make sure this is editable in the CMS)
 - [ ] Global: Resolve media queries for product CTAs
