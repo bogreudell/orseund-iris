@@ -1,12 +1,21 @@
 /* note: should this be renamed "collection?" */
 body.template-collection .collections-view-toggle {
+  position: relative;
+  padding-right: 10px;
   text-align: right;
   font-size: 1.15rem;
   letter-spacing: 0.075rem;
   font-weight: 100;
   text-transform: uppercase;
 }
-body.template-collection .collections-view-toggle span {
+body.template-collection .collections-view-toggle .breadcrumb {
+  display: inline !important;
+  position: absolute;
+  left: 20px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.template-collection .collections-view-toggle span:last-of-type {
   padding-right: 10px;
 }
 body.template-collection .collections-view-toggle button {
