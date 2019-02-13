@@ -9,6 +9,27 @@ Last Update:
 
 */
 
+// 
+function collectionsToggleView(){
+	$('#flats').on('click', function(){
+		$('#on-body').removeClass('active');
+		$(this).toggleClass('active');
+		$('.indiv-product').removeClass('body-view');
+		$('.indiv-product').toggleClass('flats-view');
+	});
+
+	$('#on-body').on('click', function(){
+		$('#flats').removeClass('active');
+		$(this).toggleClass('active');
+		$('.indiv-product').removeClass('flats-view');
+		$('.indiv-product').toggleClass('body-view');
+	});
+}
+
+$(document).ready(function(){
+	collectionsToggleView();
+});
+
 // homepage featured products scroll
 function horizontalProductScroll(){
 	var $scrollLength = $('.indiv-product').width(),

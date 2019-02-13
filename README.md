@@ -22,7 +22,7 @@ Custom Shopify Theme for Orseund Iris
 - [x] Homepage: Add clickable horizontal scroll for 8 homepage products
 - [ ] Cart: Products adding to cart w/o size selected [bug fix]
 - [ ] Product Single: Address landscape iframe height on mobile
-- [ ] Shop: "Quick view" for product flats
+- [x] Shop: "Quick view" for product flats
 - [x] Shop Social: Shop social popup clean-up (thin x, nicer type)
 - [x] Pages: Editorials mobile clean-up
 - [ ] Research and consultation: two-step authentication on purchases
