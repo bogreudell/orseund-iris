@@ -149,7 +149,7 @@ $(document).ready(function(){
 	cartDrawerControls();
 });
 
-/* responsive iFrame */
+/* responsive iFrame on Product Pages */
 function responsiveIframe() {
 	function setAspectRatio() {
 		$('.featured-image-div iframe').each(function() {
@@ -206,6 +206,45 @@ $(document).ready(function(){
 				responsiveIframe();
 			}
 		});
+	}
+});
+
+/* responsive iFrame on Editorials - to delete once we implement css responsive iframes */
+function responsiveIframeEditorials() {
+	function setAspectRatio() {
+		$('.template-page iframe').each(function() {
+			var $iframeWidth = $(this).width(),
+				$iframeHeight = $(this).height();
+
+				if ( $(window).width() >= 768 ) {
+					if ( $iframeWidth > $iframeHeight ) {
+						$(this).attr('width','100%')
+						$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
+						console.log($iframeWidth);
+						console.log($iframeHeight);
+					} else {
+						$(this).attr('width','100%');
+						$(this).css('height',$(this).width()*(16/9));
+					}
+				} else {
+					if ( $iframeWidth > $iframeHeight ) {
+						$(this).attr('height','100%')
+						$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
+					} else {
+						$(this).attr('height','100%');
+						$(this).css('width',$(this).height()*9/16);
+					}
+				}
+		});
+	}
+
+	setAspectRatio()	
+	$(window).resize(setAspectRatio);
+}
+
+$(document).ready(function(){
+	if ( $('body').hasClass('template-page') ) {
+		responsiveIframeEditorials();
 	}
 });
 

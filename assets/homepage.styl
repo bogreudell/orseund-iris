@@ -39,6 +39,26 @@ body
 					
 					#scroll-right
 						right 10px
+			
+			.instagram-wrapper
+				.title-bar
+					display block
+					width 200px
+					margin auto
+					
+				#oi_instagram-cta
+					color #000
+					width 100%
+					display block
+					padding 6px
+					text-align center
+					text-transform uppercase
+					font-size 1.15rem
+					letter-spacing .075rem
+					margin 10px auto 75px
+					
+					&:hover
+						text-decoration none
 
 @media all and (max-width:768px)
 	body
@@ -60,3 +80,7 @@ body
 						#scroll-left,
 						#scroll-right
 							display none
+				
+				.instagram-wrapper
+					#oi_instagram-cta
+						margin-bottom 0 !important

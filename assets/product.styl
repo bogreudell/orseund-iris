@@ -1,0 +1,71 @@
+body
+    &.template-product
+        #related-products
+            max-width none !important /* styles override */
+            text-align center
+            
+            li
+                width 24.75vw
+                border 0 !important /* styles override */ 
+
+@media all and (max-width:1060px)
+    body
+        &.template-product
+            #related-products
+                max-width none !important /* styles override */
+                text-align center
+                
+                li
+                    width 49vw
+                    margin-bottom 0 !important
+
+/* can we minimize the "importants" after the "big" cleanup later? */                
+@media all and (max-width:907px)
+    body
+        &.template-product
+            .oi_fixed-header .logo-wrapper img
+                margin-top -25px !important
+
+            .breadcrumb
+                padding-left 15px !important
+                margin-bottom 0 !important
+            
+            .product-images
+                width 100% !important
+  
+            #product_images 
+                #product-thumbnails
+                    display none
+
+                .featured-image-div
+                    width 100% !important
+                    height 75vh !important
+                    white-space nowrap !important
+                    overflow-x scroll !important
+                    overflow-y hidden !important
+                    -webkit-overflow-scrollingtouch /*overflowauto */
+                    
+                    img
+                        height 100%
+                        width auto !important
+                        vertical-align top
+
+                .featured-product-div
+                    height 100% !important
+                    margin 0 !important
+                    width auto !important
+                    display inline-block !important
+
+            .product-information
+                width 100% !important
+                padding 15px !important
+            
+            #related-products
+                li
+                    .indiv-product
+                        margin-bottom 0 !important
+
+@media all and (max-width:768px)
+    #related-products
+        li
+            width 100% !important
