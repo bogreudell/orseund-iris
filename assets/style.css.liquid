@@ -3,11 +3,10 @@
 /* import stylus code. the long-term goal will be a gradual
    shift to stylus and the elimination of all earlier code here */
 
-/*@import "app.css";*/
-/*@import "global.css";*/
+@import url("{{ 'global.css' | asset_url }}");
 @import url("{{ 'homepage.css' | asset_url }}");
-/*@import "shop.css";*/
-/*@import "products.css";*/
+@import url("{{ 'shop.css' | asset_url }}");
+@import url("{{ 'products.css' | asset_url }}");
 
 /* begin custom css added by Ethan Steiner - ethansteiner@gmail.com */
 

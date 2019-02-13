@@ -1,0 +1,38 @@
+/* Product Listing (thumbnail) */
+
+.indiv-product
+	a
+		color #fff
+			
+		.product-image
+			padding-bottom 150%
+			
+			&.featured
+				display block
+			
+			&.rollover
+				display none
+			
+		.hp-title
+			position absolute
+			bottom 5px
+			left 10px
+			text-shadow 0 0 30px #000
+			
+			span
+				text-align left
+				color #fff
+		
+		&:hover
+			color #fff !important
+			
+			.hp-title
+				text-shadow 0 0 0 !important
+			
+			.product-image
+				&.featured
+					display none
+				
+				&.rollover
+					display block
+	

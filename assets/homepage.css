@@ -37,3 +37,20 @@ body.template-index .main #homepage-main-wrap #featured #scroll-left.hidden {
 body.template-index .main #homepage-main-wrap #featured #scroll-right {
   right: 10px;
 }
+@media all and (max-width: 768px) {
+  body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid {
+    white-space: initial !important;
+  }
+  body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li {
+    width: 100%;
+    margin-bottom: 0 !important /* override style */;
+/* override style */
+  }
+  body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li .indiv-product {
+    margin-bottom: 0 !important;
+  }
+  body.template-index .main #homepage-main-wrap #featured #scroll-left,
+  body.template-index .main #homepage-main-wrap #featured #scroll-right {
+    display: none;
+  }
+}

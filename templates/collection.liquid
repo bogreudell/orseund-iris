@@ -1,5 +1,22 @@
+<!-- promoboxes - get rid of them? -->
 <div id="collections-main" class="{{ collection.handle }}">
+{% paginate collection.products by settings.products-per-page %}
+	{% if collection.products.size > 0 %}
+		<ul class="product-grid clearfix">
+		{% for product in collection.products %}
+			<li class="{% cycle ' alpha', ' mobile', ' omega' %}">
+				{% include 'product-listing' %}
+			</li>
+		{% endfor %}
+		</ul>
+		{% include 'pagination' %}
+	{% else %}
+		<div class="no-products-found">{{ 'collections.general.no_matches' | t }}</div>
+	{% endif %}
+{% endpaginate %}
+</div>
 
+{% comment %}
 	<div class="container">
 
 		<div class="row">
@@ -83,4 +100,4 @@
 
 	</div>
 
-</div>
+</div> {% endcomment %}

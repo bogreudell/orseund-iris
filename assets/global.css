@@ -1,0 +1,35 @@
+/* Product Listing (thumbnail) */
+.indiv-product a {
+  color: #fff;
+}
+.indiv-product a .product-image {
+  padding-bottom: 150%;
+}
+.indiv-product a .product-image.featured {
+  display: block;
+}
+.indiv-product a .product-image.rollover {
+  display: none;
+}
+.indiv-product a .hp-title {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  text-shadow: 0 0 30px #000;
+}
+.indiv-product a .hp-title span {
+  text-align: left;
+  color: #fff;
+}
+.indiv-product a:hover {
+  color: #fff !important;
+}
+.indiv-product a:hover .hp-title {
+  text-shadow: 0 0 0 !important;
+}
+.indiv-product a:hover .product-image.featured {
+  display: none;
+}
+.indiv-product a:hover .product-image.rollover {
+  display: block;
+}
