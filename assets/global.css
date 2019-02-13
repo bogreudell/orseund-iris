@@ -43,3 +43,18 @@
 .indiv-product a:hover .product-image.rollover {
   display: block;
 }
+.indiv-product.flats-view .hp-title {
+  display: none;
+}
+.indiv-product.flats-view .product-image.featured {
+  display: none;
+}
+.indiv-product.flats-view .product-image.rollover {
+  display: block;
+}
+.indiv-product.body-view .product-image.featured {
+  display: block;
+}
+.indiv-product.body-view .product-image.rollover {
+  display: none;
+}
