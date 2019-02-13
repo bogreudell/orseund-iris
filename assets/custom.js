@@ -9,6 +9,34 @@ Last Update:
 
 */
 
+// homepage featured products scroll
+function horizontalProductScroll(){
+	var $scrollLeft = $('#scroll-left'),
+		$scrollRight = $('#scroll-right');
+
+	$scrollRight.click(function() {
+		event.preventDefault();
+
+		$('.featured-products').animate({
+			scrollLeft: "+=300%"
+		}, "slow");
+	});
+
+	$scrollLeft.click(function() {
+		event.preventDefault();
+
+		$('.featured-products').animate({
+			scrollLeft: "-=300%"
+		}, "slow");
+	});
+}
+
+$(document).ready(function(){
+	if ( $('body').hasClass('template-index') ){
+		horizontalProductScroll();
+	}
+});
+
 // product flat popup
 function productFlatPopups() {
 	if ( $('body').hasClass('template-product') ){

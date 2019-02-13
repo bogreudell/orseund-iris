@@ -149,200 +149,23 @@
 </div><!-- banner -->
 
 <div id="homepage-main-wrap">
-
-<a id="oi_shop-all" href="https://orseundiris.com/collections/shop">Shop All</a>
-
-<div id="homepage-main-wrap-2">
-
-<div class="container" id="main-block">
-
-<div class="homepage-main-mask">
-
-	{% if settings.show_promo_boxes %}
-
-	<div class="row">
-
-		<div class="promo-boxes">
-
-			{% case settings.number_of_text_promo_boxes %}
-			{% when 'one' %}
-
-			<div class="col-md-12">
-				<div class="promo-box-1-wrapper">
-					{% if settings.text_promo_box_1_link != empty %}
-						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
-					{% else %}
-						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
-					{%endif%}
-				</div>
-			</div>
-
-			{% when 'two' %}
-
-			<div class="col-md-6 col-sm-6">
-				<div class="promo-box-1-wrapper">
-					{% if settings.text_promo_box_1_link != empty %}
-						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
-					{% else %}
-						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
-					{%endif%}
-				</div>
-			</div>
-
-			<div class="col-md-6 col-sm-6">
-				<div class="promo-box-2-wrapper">
-					{% if settings.text_promo_box_2_link != empty %}
-						<p><a href="{{ settings.text_promo_box_2_link }}">{{ settings.text_promo_box_2_text }}</a></p>
-					{% else %}
-						<p><span>{{ settings.text_promo_box_2_text }}</span></p>
-					{%endif%}
-				</div>
-			</div>
-
-			{% when 'three' %}
-
-			<div class="col-md-4 col-sm-4">
-				<div class="promo-box-1-wrapper">
-					{% if settings.text_promo_box_1_link != empty %}
-						<p><a href="{{ settings.text_promo_box_1_link }}">{{ settings.text_promo_box_1_text }}</a></p>
-					{% else %}
-						<p><span>{{ settings.text_promo_box_1_text }}</span></p>
-					{%endif%}
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-4">
-				<div class="promo-box-2-wrapper">
-					{% if settings.text_promo_box-2_link != empty %}
-						<p><a href="{{ settings.text_promo_box_2_link }}">{{ settings.text_promo_box_2_text }}</a></p>
-					{% else %}
-						<p><span>{{ settings.text_promo_box_2_text }}</span></p>
-					{%endif%}
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-4">
-				<div class="promo-box-3-wrapper">
-					{% if settings.text_promo_box_3_link != empty %}
-						<p><a href="{{ settings.text_promo_box_3_link }}">{{ settings.text_promo_box_3_text }}</a></p>
-					{% else %}
-						<p><span>{{ settings.text_promo_box_3_text }}</span></p>
-					{%endif%}
-				</div>
-			</div>
-
-			{% endcase %}
-
-		</div>
-
-	</div>
-
-	{% endif %}
-
-<div class="row">
-
-<div class="col-md-12">
-
-{% case settings.number_of_promoboxs %}
-{% when 'one' %}
-<div id="hp-one-promobox" class="row">
-
-<div class="col-md-12">
-
-      {% if settings.promobox_item_1_link != empty %}
-        {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text | link_to: settings.promobox_item_1_link }}
-      {% else %}
-        {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text }}
-      {%endif%}
-
-</div>
-
-</div>
-
-{% when 'two' %}
-<div id="hp-two-promoboxs" class="row">
-
-	<div class="col-md-6 col-sm-6 col-xs-6">
-
-    {% if settings.promobox_item_1_link != empty %}
-      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text | link_to: settings.promobox_item_1_link }}
-    {% else %}
-      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text }}
-    {%endif%}
-
-	</div>
-
-	<div class="col-md-6 col-sm-6 col-xs-6">
-
-    {% if settings.promobox_item_2_link != empty %}
-      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text | link_to: settings.promobox_item_2_link }}
-    {% else %}
-      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text }}
-    {%endif%}
-
-	</div>
-</div>
-
-{% when 'three' %}
-<div id="hp-three-promoboxs" class="row">
-
-	<div class="col-md-4 col-sm-4 col-xs-4">
-
-    {% if settings.promobox_item_1_link != empty %}
-      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text | link_to: settings.promobox_item_1_link }}
-    {% else %}
-      {{ 'promobox-item-1.jpg' | asset_url | img_tag: settings.promobox_item_1_alt_text }}
-    {%endif%}
-
-	</div>
-
-	<div class="col-md-4 col-sm-4 col-xs-4">
-
-    {% if settings.promobox_item_2_link != empty %}
-      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text | link_to: settings.promobox_item_2_link }}
-    {% else %}
-      {{ 'promobox-item-2.jpg' | asset_url | img_tag: settings.promobox_item_2_alt_text }}
-    {%endif%}
-
-	</div>
-
-	<div class="col-md-4 col-sm-4 col-xs-4">
-
-    {% if settings.promobox_item_3_link != empty %}
-      {{ 'promobox-item-3.jpg' | asset_url | img_tag: settings.promobox_item_3_alt_text | link_to: settings.promobox_item_3_link }}
-    {% else %}
-      {{ 'promobox-item-3.jpg' | asset_url | img_tag: settings.promobox_item_3_alt_text }}
-    {%endif%}
-
-	</div>
-</div>
-{% endcase %}
-
-<div id="featured">
-
-	<div class="row">
-		<ul class="featured-products product-grid">
+	<a id="oi_shop-all" href="https://orseundiris.com/collections/shop">Shop All</a>
+	<div id="featured">
+		<ul id="horizontal-scroll" class="featured-products product-grid">
 		{% for product in collections[settings.which-collection].products limit:8 %}
-			<li class="col-md-3{% cycle ' alpha', '', '', ' omega' %} col-sm-3 col-xs-12">
+			<li class="{% cycle ' alpha', '', '', ' omega' %}">
 				{% include 'product-listing' %}
 	   		</li>
 		{% endfor %}
 		</ul>
+		<button id="scroll-left">
+			<i class="fal fa-angle-left"></i>
+		</button>
+		<button id="scroll-right">
+			<i class="fal fa-angle-right"></i>
+		</button>
 	</div>
-
 </div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><!-- what's going on here? -->
 
 {% if settings.show-instagram-homepage %}
 
