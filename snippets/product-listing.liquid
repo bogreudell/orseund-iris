@@ -1,26 +1,21 @@
-<div class="indiv-product">
-
-	{% if product.compare_at_price_max > product.price %}
-		<div class="sale-badge">{{ 'products.general.sale' | t }}</div>
-	{% endif %}
-
+<div class="indiv-product">	
 	<a href="{{ product.url | within: collection }}">
-		<div class="indiv-product-wrap">
-			<img src="{{ product.images[1] | img_url: 'original' }}" alt="">
-			<img src="{{ product.featured_image | product_img_url: 'original' }}'" data-adaptive-background='1'>
+		{% if product.compare_at_price_max > product.price %}
+			<div class="sale-badge">{{ 'products.general.sale' | t }}</div>
+		{% endif %}
+
+		<div class="product-image featured" style="background:url({{ product.featured_image | product_img_url: 'original' }}) center center no-repeat; background-size:cover;"></div>
+		<div class="product-image rollover" style="background:url({{ product.images[1] | img_url: 'original' }}) center center no-repeat; background-size:cover;"></div>
+
+		<div class="hp-title custom-font">
+			{{product.title}}<br />
+			<span class="money-styling">
+			  {% if product.price_varies %}
+			    <small>{{ 'products.general.from' | t }}</small> {{ product.price_min | money }}
+			  {% else %}
+			    {{ product.price_min | money }}
+			  {% endif %}
+			</span>
 		</div>
 	</a>
-</div>
-
-<div class="hp-title custom-font">
-<a href="{{ product.url | within: collection }}">
-{{product.title}}<br />
-	<span class="money-styling">
-  {% if product.price_varies %}
-    <small>{{ 'products.general.from' | t }}</small> {{ product.price_min | money }}
-  {% else %}
-    {{ product.price_min | money }}
-  {% endif %}
-</span>
-</a>
 </div>

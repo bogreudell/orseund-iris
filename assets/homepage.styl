@@ -39,3 +39,24 @@ body
 					
 					#scroll-right
 						right 10px
+
+@media all and (max-width:768px)
+	body
+		&.template-index
+			.main
+				#homepage-main-wrap
+					#featured
+						.featured-products.product-grid
+							white-space initial !important
+							
+							li
+								width 100%
+								margin-bottom 0 !important /* override style */
+								
+								/* override style */
+								.indiv-product
+									margin-bottom 0 !important
+								
+						#scroll-left,
+						#scroll-right
+							display none

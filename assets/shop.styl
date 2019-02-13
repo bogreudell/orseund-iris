@@ -1,0 +1,23 @@
+/* note: should this be renamed "collection?" */
+
+body
+	&.template-collection
+		.product-grid
+			margin-top 60px
+			text-align center
+			
+			li
+				width 24.75vw
+				margin-bottom 0 !important
+
+@media all and (max-width:768px)
+	body
+		&.template-collection
+			.product-grid
+				li
+					width 100%
+					margin-bottom 0 !important /* override style */
+					
+					.indiv-product
+						margin-bottom 0 !important /* override style */
+		

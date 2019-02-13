@@ -1,3 +1,37 @@
+.indiv-product a {
+  color: #fff;
+}
+.indiv-product a .product-image {
+  padding-bottom: 150%;
+}
+.indiv-product a .product-image.featured {
+  display: block;
+}
+.indiv-product a .product-image.rollover {
+  display: none;
+}
+.indiv-product a .hp-title {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  text-shadow: 0 0 30px #000;
+}
+.indiv-product a .hp-title span {
+  text-align: left;
+  color: #fff;
+}
+.indiv-product a:hover {
+  color: #fff !important;
+}
+.indiv-product a:hover .hp-title {
+  text-shadow: 0 0 0 !important;
+}
+.indiv-product a:hover .product-image.featured {
+  display: none;
+}
+.indiv-product a:hover .product-image.rollover {
+  display: block;
+}
 body.template-index .main #homepage-main-wrap #featured {
   position: relative;
 }
@@ -36,4 +70,38 @@ body.template-index .main #homepage-main-wrap #featured #scroll-left.hidden {
 }
 body.template-index .main #homepage-main-wrap #featured #scroll-right {
   right: 10px;
+}
+@media all and (max-width: 768px) {
+  body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid {
+    white-space: initial !important;
+  }
+  body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li {
+    width: 100%;
+    margin-bottom: 0 !important /* override style */;
+/* override style */
+  }
+  body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li .indiv-product {
+    margin-bottom: 0 !important;
+  }
+  body.template-index .main #homepage-main-wrap #featured #scroll-left,
+  body.template-index .main #homepage-main-wrap #featured #scroll-right {
+    display: none;
+  }
+}
+body.template-collection .product-grid {
+  margin-top: 60px;
+  text-align: center;
+}
+body.template-collection .product-grid li {
+  width: 24.75vw;
+  margin-bottom: 0 !important;
+}
+@media all and (max-width: 768px) {
+  body.template-collection .product-grid li {
+    width: 100%;
+    margin-bottom: 0 !important /* override style */;
+  }
+  body.template-collection .product-grid li .indiv-product {
+    margin-bottom: 0 !important /* override style */;
+  }
 }

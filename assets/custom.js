@@ -11,14 +11,15 @@ Last Update:
 
 // homepage featured products scroll
 function horizontalProductScroll(){
-	var $scrollLeft = $('#scroll-left'),
+	var $scrollLength = $('.indiv-product').width(),
+		$scrollLeft = $('#scroll-left'),
 		$scrollRight = $('#scroll-right');
 
 	$scrollRight.click(function() {
 		event.preventDefault();
 
 		$('.featured-products').animate({
-			scrollLeft: "+=300%"
+			scrollLeft: "+=" + $scrollLength
 		}, "slow");
 	});
 
@@ -26,8 +27,12 @@ function horizontalProductScroll(){
 		event.preventDefault();
 
 		$('.featured-products').animate({
-			scrollLeft: "-=300%"
+			scrollLeft: "-=" + $scrollLength
 		}, "slow");
+	});
+
+	$(window).resize(function(){
+		$scrollLength = $('.indiv-product').width();
 	});
 }
 
@@ -424,9 +429,9 @@ $('#responsive-menu-button').sidr({
 
 // matchHeight
 
-$(function() {
-    $('.product-grid li .indiv-product').matchHeight();
-});
+// $(function() {
+//     $('.product-grid li .indiv-product').matchHeight();
+// });
 
 /* Sticky Menu */
 
