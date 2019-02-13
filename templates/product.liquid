@@ -237,7 +237,7 @@
 
 <div class="remove-margins row"> -->
 
-	<ul class="product-grid clearfix">
+	<ul id="related-products" class="product-grid clearfix">
   {% assign current_product = product %}
   {% assign current_product_found = false %}
   {% for product in collection.products limit: 5 %}
@@ -245,7 +245,7 @@
        {% assign current_product_found = true %}
     {% else %}
        {% unless current_product_found == false and forloop.last %}
-			<li class="col-md-3{% cycle ' alpha', '', ' mobile', ' omega' %} col-sm-6">
+			<li class="{% cycle ' alpha', '', ' mobile', ' omega' %}">
 				{% include 'product-listing' %}
 			</li>
        {% endunless %}
