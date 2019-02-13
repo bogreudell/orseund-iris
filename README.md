@@ -25,9 +25,9 @@ Custom Shopify Theme for Orseund Iris
 - [x] Shop: "Quick view" for product flats
 - [x] Shop Social: Shop social popup clean-up (thin x, nicer type)
 - [x] Pages: Editorials mobile clean-up
-- [ ] Research and consultation: two-step authentication on purchases
-- [ ] Research and consultation: Shopify custom fields
-- [ ] Research and consultation: "Back in stock" sign-up feature
+- [x] Research and consultation: two-step authentication on purchases
+- [x] Research and consultation: Shopify custom fields
+- [x] Research and consultation: "Back in stock" sign-up feature
 
 ## Deferred
 

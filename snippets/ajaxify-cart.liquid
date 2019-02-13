@@ -54,98 +54,100 @@ Shopify.AjaxifyCart = (function($) {
         $('#cartDrawer *').addClass('no-click');
         $('#cartDrawer').addClass('slide-in');
       });
+
       // add to cart
       $(_config.addToCartFormSelector).submit(function(e) {
-        e.preventDefault();
-        var $addToCartForm = $(this);
-        var $addToCartBtn = $addToCartForm.find(_config.addToCartBtnSelector);
-        _setText($addToCartBtn, _config.addingToCartBtnLabel);
-        $addToCartBtn.addClass('disabled').prop('disabled', true);
-        // Add to cart.
-        $.ajax({
-          url: _config.shopifyAjaxAddURL,
-          dataType: 'json',
-          type: 'post',
-          data: $addToCartForm.serialize(),
-          success: function(itemData) {
-            // Re-enable add to cart button.
-            $addToCartBtn.addClass('inverted');
-            _setText($addToCartBtn, _config.addedToCartBtnLabel);
-            window.setTimeout(function(){
-              $addToCartBtn.prop('disabled', false).removeClass('disabled').removeClass('inverted');
-              _setText($addToCartBtn,_config.addToCartBtnLabel);
-            }, _config.howLongTillBtnReturnsToNormal);
-            // empty cart element
-            $('#cartDrawer #cartDrawerInner #cartDrawerProducts').empty();
-            // Update cart count, show cart link, and populate cart in DOM.
-            $.getJSON(_config.shopifyAjaxCartURL, function(cart) {
-              $.each(cart.items, function(index, cartItem){
-                var _productTitle = cartItem.product_title,
-                    _productVariant = cartItem.variant_title,
-                    _productID = cartItem.variant_id,
-                    _productPrice = cartItem.price,
-                    _productQty = cartItem.quantity,
-                    _productImage = cartItem.image,
-                    _productHtml = '<div class="oi_cart-item">' +
-                                   '<img src="' + _productImage + 
-                                   ' alt="' + _productTitle + '" />' +
-                                   '<h1 class="custom-font product-description-header">' + _productTitle + '</h1>' + 
-                                   '<p>' + _productVariant + '</p>' +
-                                   '<p><span class="money">' + Shopify.formatMoney(_productPrice) + '</span></p>' + 
-                                   '<p class="cart-drawer__qty">Quantity: <button class="qty-minus">-</button><input data-variant="' + _productID + '" type="number" value="' + _productQty + '"/><button class="qty-plus">+</button></p>' +
-                                   '<button class="oi_cart-item__remove">Remove</button>' +
-                                   '</div>';
+            e.preventDefault();
 
-                $('#cartDrawer #cartDrawerInner #cartDrawerProducts').append(_productHtml);
-                $('.main').addClass('fade-out');
-                $('header').addClass('fade-out');
-                $('body').addClass('oi_no-scroll');
-                $('#cartDrawer *').addClass('no-click');
-                $('#cartDrawer').addClass('slide-in');
-              });
-              // update cart count
-              $(_config.cartCountSelector).html(cart.item_count);
-              //
-              if (_config.cartTotalSelector && $(_config.cartTotalSelector).size()) {
-                if (typeof Currency !== 'undefined' && typeof Currency.moneyFormats !== 'undefined') {
-                  var newCurrency = '';
-                  if ($('[name="currencies"]').size()) {
-                    newCurrency = $('[name="currencies"]').val();
-                  }
-                  else if ($('#currencies span.selected').size()) {
-                    newCurrency = $('#currencies span.selected').attr('data-currency');
-                  }
-                  if (newCurrency) {
-                    $(_config.cartTotalSelector).html('<span class=money>' + Shopify.formatMoney(Currency.convert(cart.total_price, "{{ shop.currency }}", newCurrency), Currency.money_format[newCurrency]) + '</span>');
-                  } 
-                  else {
-                    $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
-                  }
+            var $addToCartForm = $(this);
+            var $addToCartBtn = $addToCartForm.find(_config.addToCartBtnSelector);
+            _setText($addToCartBtn, _config.addingToCartBtnLabel);
+            $addToCartBtn.addClass('disabled').prop('disabled', true);
+            // Add to cart.
+            $.ajax({
+              url: _config.shopifyAjaxAddURL,
+              dataType: 'json',
+              type: 'post',
+              data: $addToCartForm.serialize(),
+              success: function(itemData) {
+                // Re-enable add to cart button.
+                $addToCartBtn.addClass('inverted');
+                _setText($addToCartBtn, _config.addedToCartBtnLabel);
+                window.setTimeout(function(){
+                  $addToCartBtn.prop('disabled', false).removeClass('disabled').removeClass('inverted');
+                  _setText($addToCartBtn,_config.addToCartBtnLabel);
+                }, _config.howLongTillBtnReturnsToNormal);
+                // empty cart element
+                $('#cartDrawer #cartDrawerInner #cartDrawerProducts').empty();
+                // Update cart count, show cart link, and populate cart in DOM.
+                $.getJSON(_config.shopifyAjaxCartURL, function(cart) {
+                  $.each(cart.items, function(index, cartItem){
+                    var _productTitle = cartItem.product_title,
+                        _productVariant = cartItem.variant_title,
+                        _productID = cartItem.variant_id,
+                        _productPrice = cartItem.price,
+                        _productQty = cartItem.quantity,
+                        _productImage = cartItem.image,
+                        _productHtml = '<div class="oi_cart-item">' +
+                                       '<img src="' + _productImage + 
+                                       ' alt="' + _productTitle + '" />' +
+                                       '<h1 class="custom-font product-description-header">' + _productTitle + '</h1>' + 
+                                       '<p>' + _productVariant + '</p>' +
+                                       '<p><span class="money">' + Shopify.formatMoney(_productPrice) + '</span></p>' + 
+                                       '<p class="cart-drawer__qty">Quantity: <button class="qty-minus">-</button><input data-variant="' + _productID + '" type="number" value="' + _productQty + '"/><button class="qty-plus">+</button></p>' +
+                                       '<button class="oi_cart-item__remove">Remove</button>' +
+                                       '</div>';
+
+                    $('#cartDrawer #cartDrawerInner #cartDrawerProducts').append(_productHtml);
+                    $('.main').addClass('fade-out');
+                    $('header').addClass('fade-out');
+                    $('body').addClass('oi_no-scroll');
+                    $('#cartDrawer *').addClass('no-click');
+                    $('#cartDrawer').addClass('slide-in');
+                  });
+                  // update cart count
+                  $(_config.cartCountSelector).html(cart.item_count);
+                  //
+                  if (_config.cartTotalSelector && $(_config.cartTotalSelector).size()) {
+                    if (typeof Currency !== 'undefined' && typeof Currency.moneyFormats !== 'undefined') {
+                      var newCurrency = '';
+                      if ($('[name="currencies"]').size()) {
+                        newCurrency = $('[name="currencies"]').val();
+                      }
+                      else if ($('#currencies span.selected').size()) {
+                        newCurrency = $('#currencies span.selected').attr('data-currency');
+                      }
+                      if (newCurrency) {
+                        $(_config.cartTotalSelector).html('<span class=money>' + Shopify.formatMoney(Currency.convert(cart.total_price, "{{ shop.currency }}", newCurrency), Currency.money_format[newCurrency]) + '</span>');
+                      } 
+                      else {
+                        $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
+                      }
+                    }
+                    else {
+                      $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
+                    }
+                  };
+                });        
+              }, 
+              error: function(XMLHttpRequest) {
+                var response = eval('(' + XMLHttpRequest.responseText + ')');
+                response = response.description;
+                if (response.slice(0,4) === 'All ') {
+                  _showFeedback('error', response.replace('All 1 ', 'All '), $addToCartForm);
+                  $addToCartBtn.prop('disabled', false);
+                  _setText($addToCartBtn, _config.soldOutBtnLabel);
+                  $addToCartBtn.prop('disabled',true);
                 }
                 else {
-                  $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
+                  _showFeedback('error', '<i class="fa fa-warning"></i> ' + response, $addToCartForm);
+                  $addToCartBtn.prop('disabled', false).removeClass('disabled');
+                  _setText($addToCartBtn, _config.addToCartBtnLabel);
                 }
-              };
-            });        
-          }, 
-          error: function(XMLHttpRequest) {
-            var response = eval('(' + XMLHttpRequest.responseText + ')');
-            response = response.description;
-            if (response.slice(0,4) === 'All ') {
-              _showFeedback('error', response.replace('All 1 ', 'All '), $addToCartForm);
-              $addToCartBtn.prop('disabled', false);
-              _setText($addToCartBtn, _config.soldOutBtnLabel);
-              $addToCartBtn.prop('disabled',true);
-            }
-            else {
-              _showFeedback('error', '<i class="fa fa-warning"></i> ' + response, $addToCartForm);
-              $addToCartBtn.prop('disabled', false).removeClass('disabled');
-              _setText($addToCartBtn, _config.addToCartBtnLabel);
-            }
-          }
-        });   
-        return false;    
-      });
+              }
+            });   
+            return false;    
+          });
 
       // update cart item quantities
       $('#cartDrawer').on('change', 'input[type="number"]', function(e){
