@@ -334,10 +334,10 @@
 				{% endif %}
 
 				<div id="search-wrapper">
-					<form id="search" action="/search" class="input input--bind">
+					<form id="search" action="/search" class="input input--bind" autocomplete="off" >
 
 						<label class="input__label input__label--bind" for="input-19">
-							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" />
+							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" autocomplete="off" />
 						</label>
 						<input
 							id="search_text"
@@ -346,6 +346,7 @@
 							size="20"
 							placeholder="{{ 'layout.header.search_box_text' | t }}"
 							class="input__field input__field--bind"
+							autocomplete="off" 
 						/>
 
 					</form>
@@ -448,10 +449,10 @@
 						</div><!-- #cart-brief -->
 
 						<div id="search-wrapper">
-					<form id="search" action="/search" class="input input--bind">
+					<form id="search" action="/search" class="input input--bind" autocomplete="off" >
 
 						<label class="input__label input__label--bind" for="input-19">
-							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" />
+							<input id="search_submit" class="input__label-content input__label-content--bind" type="submit" border="0" value="&#xf002;" autocomplete="off" />
 						</label>
 						<input
 							id="search_text"
@@ -460,6 +461,7 @@
 							size="20"
 							placeholder="{{ 'layout.header.search_box_text' | t }}"
 							class="input__field input__field--bind"
+							autocomplete="off" 
 						/>
 
 					</form>

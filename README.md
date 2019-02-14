@@ -34,5 +34,5 @@ Custom Shopify Theme for Orseund Iris
 - [ ] Homepage: Scroll-left-right arrows should only display if scrolling possible 
 - [ ] Install code compiler (time-permitting)
 - [ ] Divide CSS into template-specific stylesheets: we'll be doing this as we go, transitioning from the style.liquid.css to the stylus templates
-- [ ] Global: Conform search box dropdown typography to nav menu dropdown - can't fix this, native browser functionality. turn off autocomplete?
+- [x] Global: (original) Conform search box dropdown typography to nav menu dropdown. (new) Turn off autocomplete on this form. 
 - [ ] Cart: Improve image load time on pop-up cart - a little more complicated than anticipated, involves the API (reassess)

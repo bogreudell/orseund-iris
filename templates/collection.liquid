@@ -2,17 +2,18 @@
 <!-- promoboxes - get rid of them? -->
 <div class="collections-view-toggle">
 	{% include 'breadcrumb' %}
-	
-	<span>Quick View</span>
-	<button id="flats">Flats</button>
-	<button id="on-body">On Body</button>
+	<button id="flats">Quick View Flats</button>
 </div>
 <div id="collections-main" class="{{ collection.handle }}">
 {% paginate collection.products by settings.products-per-page %}
 	{% if collection.products.size > 0 %}
 		<ul class="product-grid clearfix">
 		{% for product in collection.products %}
-			<li class="{% cycle ' alpha', ' mobile', ' omega' %}">
+			{%comment%}
+				<!-- need to assess value of alpha and omega classes -->
+				<li class="{% cycle ' alpha', ' mobile', ' omega' %}">
+			{% endcomment %}
+			<li>
 				{% include 'product-listing' %}
 			</li>
 		{% endfor %}

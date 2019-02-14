@@ -45,12 +45,15 @@ body.template-collection .product-grid {
   text-align: center;
 }
 body.template-collection .product-grid li {
-  width: 24.75vw;
-  margin-bottom: 0 !important;
+  float: left;
+  width: 25vw;
+  margin: 0 !important;
+  box-sizing: border-box;
+  border: 0.5px solid #fff;
 }
 @media all and (max-width: 1059px) {
   body.template-collection .product-grid li {
-    width: 33vw;
+    width: calc(100vw / 3);
   }
 }
 @media all and (max-width: 768px) {
