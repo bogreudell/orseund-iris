@@ -177,44 +177,73 @@ $(document).ready(function(){
 });
 
 /* responsive iFrame on Product Pages */
+// function responsiveIframe() {
+// 	function setAspectRatio() {
+// 		$('.featured-image-div iframe').each(function() {
+// 			var $iframeWidth = $(this).width(),
+// 				$iframeHeight = $(this).height();
+
+// 			// on our desktop layout, width of iframes is 100%
+// 			if ( $(window).width() >= 768 ) {
+// 				// so, if a video has landscape dimensions (width > height)
+// 				if ( $iframeWidth > $iframeHeight ) {
+// 					// set width attribute to 100%
+// 					$(this).attr('width','100%')
+// 					// set css height attribute to the width x height/width (i.e., 9/16)
+// 					$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
+// 				// else, if a video has portrait dimensions (height > width)
+// 				} else {
+// 					// set width attribute to 100%
+// 					$(this).attr('width','100%');
+// 					// set css height attribute to the width x width/height
+// 					$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
+// 				}
+// 			// else, on our mobile layout, height of iframes is 100%
+// 			} else {
+// 				// so, if a video has landscape dimensions (width > height)
+// 				if ( $iframeWidth > $iframeHeight ) {
+// 					// set the height attribute to 100%
+// 					$(this).attr('height','100%')
+// 					// and set css width attribute to the height x width/height (16/9)
+// 					$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
+// 				// else, if a video has portrait dimensions (height > width)
+// 				} else {
+// 					// set the height attribute to 100%
+// 					$(this).attr('height','100%');
+// 					// set the width attribute to the height x height/width
+// 					$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
+// 				}
+// 			}
+// 		});
+// 	}
+
+// 	setAspectRatio()	
+// 	$(window).resize(setAspectRatio);
+// }
+
 function responsiveIframe() {
 	function setAspectRatio() {
 		$('.featured-image-div iframe').each(function() {
 			var $iframeWidth = $(this).width(),
-				$iframeHeight = $(this).height();
+				$iframeHeight = $(this).height(),
+				$iframeAspectRatioPortrait = ($iframeHeight/$iframeWidth)*100,
+				$iframeAspectRatioLandscape = ($iframeWidth/$iframeHeight)*100;
 
-			// on our desktop layout, width of iframes is 100%
 			if ( $(window).width() >= 768 ) {
-				// so, if a video has landscape dimensions (width > height)
 				if ( $iframeWidth > $iframeHeight ) {
-					// set width attribute to 100%
-					$(this).attr('width','100%')
-					// set css height attribute to the width x height/width (i.e., 9/16)
-					$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
-				// else, if a video has portrait dimensions (height > width)
+					// not applying appropriate padding-top to iframe-wrapper element
+					$(this).closest('.iframe-wrapper').css('padding-top', $iframeAspectRatioLandscape+'%');
 				} else {
-					// set width attribute to 100%
-					$(this).attr('width','100%');
-					// set css height attribute to the width x width/height
-					$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
+					$(this).closest('.iframe-wrapper').css('padding-top', $iframeAspectRatioPortrait+'%');
 				}
-			// else, on our mobile layout, height of iframes is 100%
 			} else {
-				// so, if a video has landscape dimensions (width > height)
 				if ( $iframeWidth > $iframeHeight ) {
-					// set the height attribute to 100%
-					$(this).attr('height','100%')
-					// and set css width attribute to the height x width/height (16/9)
-					$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
-				// else, if a video has portrait dimensions (height > width)
+				
 				} else {
-					// set the height attribute to 100%
-					$(this).attr('height','100%');
-					// set the width attribute to the height x height/width
-					$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
+
 				}
 			}
-		});
+		});		
 	}
 
 	setAspectRatio()	
@@ -241,7 +270,7 @@ $(document).ready(function(){
 				$productImageAlt = $thisImage.attr('alt');
 
 			if ( $productImageAlt.includes('iframe') ){
-				$thisImage.replaceWith($productImageAlt);
+				$thisImage.replaceWith('<div class="iframe-wrapper">'+$productImageAlt+'</div>');
 				responsiveIframe();
 			}
 		});
