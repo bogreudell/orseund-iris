@@ -26,19 +26,28 @@
 			
 		.hp-title
 			position absolute
+			width 100%
 			bottom 5px
-			left 10px
+			padding 0 10px
 			text-shadow 0 0 30px #000
 			
 			span
-				text-align left
 				color #fff
+				
+				&.product-title
+					float left
+					line-height 19px !important
+				
+				&.product-price
+					font-family adobe-garamond-pro, serif;
+					width initial !important /* override style */
+					float right
 		
 		&:hover
 			color #fff !important
 			
 			.hp-title
-				text-shadow 0 0 0 !important
+				text-shadow initial !important
 			
 			.product-image
 				&.featured
@@ -47,9 +56,11 @@
 				&.rollover
 					display block
 		
-	&.flats-view
+	&.product-view
 		.hp-title
-			display none
+			span
+				color #000 !important
+				text-shadow initial !important
 		
 		.product-image
 			&.featured

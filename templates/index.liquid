@@ -158,11 +158,11 @@
 	   		</li>
 		{% endfor %}
 		</ul>
-		<button id="scroll-left">
-			<i class="fal fa-angle-left"></i>
+		<button id="scroll-left" class="hidden">
+			{{ 'left-arrow.png' | asset_url | img_tag: 'Scroll Right' }}
 		</button>
 		<button id="scroll-right">
-			<i class="fal fa-angle-right"></i>
+			{{ 'right-arrow.png' | asset_url | img_tag: 'Scroll Right' }}
 		</button>
 	</div>
 </div>

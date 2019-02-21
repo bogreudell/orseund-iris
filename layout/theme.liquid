@@ -125,7 +125,7 @@
 
 {%- include 'bold-common' -%}
 </head>
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.header_colorscheme_white %} header-white {% endif; %}">
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.header_colorscheme_white %} header-white {% endif; %}{% if settings.show_alert_banner %} has-alert-banner{% endif; %}">
 
 <!-- Ajax Cart -->
 <div id="cartDrawer" class="no-click" style="opacity:0;">

@@ -8,14 +8,14 @@
 		<div class="product-image rollover" style="background:url({{ product.images[1] | img_url: 'original' }}) center center no-repeat; background-size:cover;"></div>
 
 		<div class="hp-title custom-font">
-			{{product.title}}<br />
-			<span class="money-styling">
+			<span class="product-title">{{product.title}}</span><span class="product-price">
 			  {% if product.price_varies %}
 			    <small>{{ 'products.general.from' | t }}</small> {{ product.price_min | money }}
 			  {% else %}
 			    {{ product.price_min | money }}
 			  {% endif %}
 			</span>
+			<div class="clear"></div>
 		</div>
 	</a>
 </div>

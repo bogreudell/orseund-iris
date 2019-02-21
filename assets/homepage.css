@@ -5,37 +5,51 @@ body.template-index .main #homepage-main-wrap #featured .featured-products.produ
   width: 100%;
   white-space: nowrap;
   overflow-x: hidden;
+  font-size: 0;
 }
 body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid::-webkit-scrollbar {
   display: none !important;
 }
 body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li {
   width: 25%;
+  box-sizing: border-box;
+  border-right: 1px solid #fff;
 }
 body.template-index .main #homepage-main-wrap #featured #scroll-left,
 body.template-index .main #homepage-main-wrap #featured #scroll-right {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  height: 90%;
   border: 0;
   background: none;
   color: #fff;
   text-shadow: 0 0 30px #222;
   font-size: 5rem;
+  transition: 0.2s opacity ease-in-out;
 }
 body.template-index .main #homepage-main-wrap #featured #scroll-left:focus,
 body.template-index .main #homepage-main-wrap #featured #scroll-right:focus {
   outline: none;
 }
-body.template-index .main #homepage-main-wrap #featured #scroll-left {
-  left: 10px;
-  transition: 0.2s opacity ease-in-out;
-}
-body.template-index .main #homepage-main-wrap #featured #scroll-left.hidden {
+body.template-index .main #homepage-main-wrap #featured #scroll-left.hidden,
+body.template-index .main #homepage-main-wrap #featured #scroll-right.hidden {
   opacity: 0;
 }
+body.template-index .main #homepage-main-wrap #featured #scroll-left {
+  padding-left: 10px;
+  left: 0;
+}
+body.template-index .main #homepage-main-wrap #featured #scroll-left img {
+  width: 25px;
+  height: auto;
+}
 body.template-index .main #homepage-main-wrap #featured #scroll-right {
-  right: 10px;
+  padding-right: 10px;
+  right: 0;
+}
+body.template-index .main #homepage-main-wrap #featured #scroll-right img {
+  width: 25px;
+  height: auto;
 }
 body.template-index .main .instagram-wrapper .title-bar {
   display: block;
@@ -58,10 +72,10 @@ body.template-index .main .instagram-wrapper #oi_instagram-cta:hover {
 }
 @media all and (max-width: 768px) {
   body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid {
-    white-space: initial !important;
+    overflow-x: scroll !important;
   }
   body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li {
-    width: 100%;
+    width: 90%;
     margin-bottom: 0 !important /* override style */;
 /* override style */
   }

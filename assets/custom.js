@@ -11,9 +11,17 @@ Last Update:
 
 // 
 function collectionsToggleView(){
-	$('#flats').on('click', function(){
-		$(this).toggleClass('active');
-		$('.indiv-product').toggleClass('flats-view');
+	$('#product-view').on('click', function(){
+		// $(this).toggleClass('active');
+		$(this).hide();
+		$('#editorial-view').show();
+		$('.indiv-product').addClass('product-view');
+	});
+
+	$('#editorial-view').on('click', function(){
+		$(this).hide();
+		$('#product-view').show();
+		$('.indiv-product').removeClass('product-view');
 	});
 }
 
@@ -23,12 +31,15 @@ $(document).ready(function(){
 
 // homepage featured products scroll
 function horizontalProductScroll(){
-	var $scrollLength = $('.indiv-product').width(),
+	var $scrollLength = $('.featured-products').width() + 20,
 		$scrollLeft = $('#scroll-left'),
 		$scrollRight = $('#scroll-right');
 
 	$scrollRight.click(function() {
 		event.preventDefault();
+
+		$(this).addClass('hidden')
+		$scrollLeft.removeClass('hidden');
 
 		$('.featured-products').animate({
 			scrollLeft: "+=" + $scrollLength
@@ -37,6 +48,9 @@ function horizontalProductScroll(){
 
 	$scrollLeft.click(function() {
 		event.preventDefault();
+
+		$(this).addClass('hidden');
+		$scrollRight.removeClass('hidden');
 
 		$('.featured-products').animate({
 			scrollLeft: "-=" + $scrollLength
@@ -101,6 +115,7 @@ $(document).ready(function(){
 // alert banner controls
 function alertBannerControls() {
 	$('#oi_alert-banner button').on('click', function(){
+		$('body').removeClass('has-alert-banner');
 		$('#oi_alert-banner').hide();
 		$('.alert-banner-offset').removeClass('alert-banner-offset');
 		$('span.BOLD-mc-picker-mnt').attr('style','margin-top:4px');
@@ -311,25 +326,23 @@ $(document).ready(function(){
 
 /* Fixed Product Info */
 function fixedProductInfo(){
+	// improved but still occasional issues on page load
+
 	var $productInformation = $('.product-information'),
 		$productInfoOffset = $productInformation.offset().top - 30,
 		$lastImage = $('.oi_main-image:nth-last-of-type(2)'),
-		$lastImageOffset = $lastImage.offset().top;
+		$lastImageOffset = $lastImage.offset().top; // for some reason, this var doesn't like to work when the page loads through a click
 
 	$(window).scroll(function(){
-		if ( $(window).scrollTop() > $productInfoOffset && $(window).scrollTop() < $lastImageOffset ){ 
+		if ( $(window).scrollTop() > $productInfoOffset && $(window).scrollTop() < $('.oi_main-image:nth-last-of-type(2)').offset().top ){ 
 			$productInformation.addClass('fixed');
 		} else {
 			$productInformation.removeClass('fixed');
 		}
-	});
 
-	$(window).scroll(function(){
-		if ( $(window).scrollTop() < $lastImageOffset ) {
-			console.log('true');
+		if ( $(window).scrollTop() < $('.oi_main-image:nth-last-of-type(2)').offset().top ) {
 			$('#oi_fixed-insta-logo').show();
 		} else {
-			console.log('false');
 			$('#oi_fixed-insta-logo').hide();
 		}
 	});
@@ -337,8 +350,11 @@ function fixedProductInfo(){
 
 $(document).ready(function(){
 	if ( $('body').hasClass('template-product') ){
-		console.log('fixed product information temporarily disabled');
 		fixedProductInfo();
+
+		$(window).resize(function(){
+			fixedProductInfo();
+		});
 	}
 });
 
