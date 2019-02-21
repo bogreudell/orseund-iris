@@ -183,23 +183,35 @@ function responsiveIframe() {
 			var $iframeWidth = $(this).width(),
 				$iframeHeight = $(this).height();
 
+			// on our desktop layout, width of iframes is 100%
 			if ( $(window).width() >= 768 ) {
+				// so, if a video has landscape dimensions (width > height)
 				if ( $iframeWidth > $iframeHeight ) {
+					// set width attribute to 100%
 					$(this).attr('width','100%')
+					// set css height attribute to the width x height/width (i.e., 9/16)
 					$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
-					console.log($iframeWidth);
-					console.log($iframeHeight);
+				// else, if a video has portrait dimensions (height > width)
 				} else {
+					// set width attribute to 100%
 					$(this).attr('width','100%');
-					$(this).css('height',$(this).width()*(16/9));
+					// set css height attribute to the width x width/height
+					$(this).css('height',$(this).width()*($iframeHeight/$iframeWidth));
 				}
+			// else, on our mobile layout, height of iframes is 100%
 			} else {
+				// so, if a video has landscape dimensions (width > height)
 				if ( $iframeWidth > $iframeHeight ) {
+					// set the height attribute to 100%
 					$(this).attr('height','100%')
+					// and set css width attribute to the height x width/height (16/9)
 					$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
+				// else, if a video has portrait dimensions (height > width)
 				} else {
+					// set the height attribute to 100%
 					$(this).attr('height','100%');
-					$(this).css('width',$(this).height()*9/16);
+					// set the width attribute to the height x height/width
+					$(this).css('width',$(this).height()*$iframeWidth/$iframeHeight);
 				}
 			}
 		});
