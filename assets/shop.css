@@ -64,7 +64,10 @@ body.template-collection .product-grid li {
   body.template-collection .product-grid li {
     width: 100%;
     margin-bottom: 0 !important /* override style */;
-    border: 1px solid #fff !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 2px solid #fff !important;
+    border-left: 0 !important;
   }
   body.template-collection .product-grid li .indiv-product {
     margin-bottom: 0 !important /* override style */;

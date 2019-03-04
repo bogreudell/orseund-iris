@@ -39,7 +39,7 @@
 					line-height 19px !important
 				
 				&.product-price
-					font-family adobe-garamond-pro, serif;
+					font-family adobe-garamond-pro, serif
 					width initial !important /* override style */
 					float right
 		
@@ -68,3 +68,23 @@
 			
 			&.rollover
 				display block
+
+@media all and (max-device-width:768px)
+	.indiv-product
+		a
+			&:hover
+				.product-image
+					&.featured
+						display block !important
+					
+					&.rollover
+						display none !important
+				
+				.hp-title
+					text-shadow 0 0 30px #000 !important
+					
+					.product-price
+						font-family adobe-garamond-pro, serif !important
+						font-style italic !important
+					
+	

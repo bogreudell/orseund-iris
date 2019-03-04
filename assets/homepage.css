@@ -1,3 +1,8 @@
+body.template-index .main #homepage-main-wrap #oi_shop-all:hover {
+  text-decoration: none;
+  background: #000;
+  color: #fff;
+}
 body.template-index .main #homepage-main-wrap #featured {
   position: relative;
 }
@@ -35,21 +40,18 @@ body.template-index .main #homepage-main-wrap #featured #scroll-left.hidden,
 body.template-index .main #homepage-main-wrap #featured #scroll-right.hidden {
   opacity: 0;
 }
+body.template-index .main #homepage-main-wrap #featured #scroll-left img,
+body.template-index .main #homepage-main-wrap #featured #scroll-right img {
+  width: 15px;
+  height: auto;
+}
 body.template-index .main #homepage-main-wrap #featured #scroll-left {
   padding-left: 10px;
   left: 0;
 }
-body.template-index .main #homepage-main-wrap #featured #scroll-left img {
-  width: 25px;
-  height: auto;
-}
 body.template-index .main #homepage-main-wrap #featured #scroll-right {
   padding-right: 10px;
   right: 0;
-}
-body.template-index .main #homepage-main-wrap #featured #scroll-right img {
-  width: 25px;
-  height: auto;
 }
 body.template-index .main .instagram-wrapper .title-bar {
   display: block;
@@ -73,6 +75,8 @@ body.template-index .main .instagram-wrapper #oi_instagram-cta:hover {
 @media all and (max-width: 768px) {
   body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid {
     overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
   }
   body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li {
     width: 90%;

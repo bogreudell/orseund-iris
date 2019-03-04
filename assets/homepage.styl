@@ -2,6 +2,12 @@ body
 	&.template-index
 		.main
 			#homepage-main-wrap
+				#oi_shop-all
+					&:hover
+						text-decoration none
+						background #000
+						color #fff
+					
 				#featured
 					position relative
 					
@@ -36,22 +42,18 @@ body
 						
 						&.hidden
 							opacity 0
+						
+						img
+							width 15px
+							height auto
 					
 					#scroll-left
 						padding-left 10px
 						left 0
-						
-						img
-							width 25px
-							height auto
 					
 					#scroll-right
 						padding-right 10px
 						right 0
-						
-						img
-							width 25px
-							height auto
 			
 			.instagram-wrapper
 				.title-bar
@@ -81,6 +83,8 @@ body
 					#featured
 						.featured-products.product-grid
 							overflow-x scroll !important
+							overflow-y hidden !important
+							-webkit-overflow-scrolling touch
 							
 							li
 								width 90%

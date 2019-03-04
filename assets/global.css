@@ -62,3 +62,18 @@
 .indiv-product.product-view .product-image.rollover {
   display: block;
 }
+@media all and (max-device-width: 768px) {
+  .indiv-product a:hover .product-image.featured {
+    display: block !important;
+  }
+  .indiv-product a:hover .product-image.rollover {
+    display: none !important;
+  }
+  .indiv-product a:hover .hp-title {
+    text-shadow: 0 0 30px #000 !important;
+  }
+  .indiv-product a:hover .hp-title .product-price {
+    font-family: adobe-garamond-pro, serif !important;
+    font-style: italic !important;
+  }
+}
