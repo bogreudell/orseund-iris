@@ -18,7 +18,7 @@ body.template-index .main #homepage-main-wrap #featured .featured-products.produ
 body.template-index .main #homepage-main-wrap #featured .featured-products.product-grid li {
   width: 25%;
   box-sizing: border-box;
-  border-right: 1px solid #fff;
+  border-right: 2px solid #fff;
 }
 body.template-index .main #homepage-main-wrap #featured #scroll-left,
 body.template-index .main #homepage-main-wrap #featured #scroll-right {
