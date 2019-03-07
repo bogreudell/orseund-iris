@@ -40,12 +40,15 @@ body.template-product #related-products li {
     white-space: nowrap !important;
     overflow-x: scroll !important;
     overflow-y: hidden !important;
-    -webkit-overflow-scrollingtouch: /*overflowauto */;
+    -webkit-overflow-scrolling: touch !important;
   }
   body.template-product #product_images .featured-image-div img {
     height: 100%;
     width: auto !important;
     vertical-align: top;
+  }
+  body.template-product #product_images .featured-image-div iframe {
+    overflow: hidden;
   }
   body.template-product #product_images .featured-product-div {
     height: 100% !important;
