@@ -52,6 +52,12 @@
 .indiv-product a:hover .product-image.rollover {
   display: block;
 }
+.indiv-product.product-view:hover .product-image.featured {
+  display: none !important;
+}
+.indiv-product.product-view:hover .product-image.rollover {
+  display: block !important;
+}
 .indiv-product.product-view .hp-title span {
   color: #000 !important;
   text-shadow: initial !important;

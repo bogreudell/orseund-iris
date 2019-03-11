@@ -57,12 +57,20 @@
 					display block
 		
 	&.product-view
+		&:hover
+			.product-image
+				&.featured
+					display none !important
+					
+				&.rollover
+					display block !important
+					
 		.hp-title
 			span
 				color #000 !important
 				text-shadow initial !important
 		
-		.product-image
+		.product-image				
 			&.featured
 				display none
 			
@@ -86,5 +94,3 @@
 					.product-price
 						font-family adobe-garamond-pro, serif !important
 						font-style italic !important
-					
-	
