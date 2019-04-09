@@ -9,7 +9,22 @@ Last Update:
 
 */
 
-// 
+// mailchimp popup
+function mailchimpPopup(){
+	setTimeout(function(){
+		$('#mc_embed_signup').addClass('enter-view');
+	}, 1500);
+
+	$('#mc_embed_signup button').on('click', function(){
+		$('#mc_embed_signup').removeClass('enter-view');
+	});
+}
+
+$(document).ready(function(){
+	mailchimpPopup();
+});
+
+// editorial - product view
 function collectionsToggleView(){
 	$('#product-view').on('click', function(){
 		// $(this).toggleClass('active');
