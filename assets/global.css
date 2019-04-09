@@ -1,4 +1,109 @@
-/* Newsletter Sign-Up */
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.custom-font {
+  font-family: "acumin-pro", sans-serif !important;
+}
+/* Newsletter Pop-up */
+#mc_embed_signup {
+  z-index: 1000000;
+  position: fixed;
+  top: 50%;
+  right: -100%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 90%;
+  max-width: 320px;
+  background: #d8bcbc;
+  border-radius: 40px;
+  text-align: center;
+  -webkit-box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+  transition: 0.5s right ease-in-out;
+}
+#mc_embed_signup.enter-view {
+  right: 0;
+}
+#mc_embed_signup .mc_embed_signup_wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 40px;
+}
+#mc_embed_signup .mc_embed_signup_wrap button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 0;
+  background: 0;
+  width: 30px;
+  padding: 0;
+}
+#mc_embed_signup .mc_embed_signup_wrap button:focus {
+  outline: none;
+}
+#mc_embed_signup * {
+  margin: 0;
+}
+#mc_embed_signup h4,
+#mc_embed_signup p {
+  font-family: adobe-garamond-pro, serif !important;
+  font-style: italic;
+}
+#mc_embed_signup h4 {
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+#mc_embed_signup p {
+  font-size: 12pt;
+  margin-bottom: 30px;
+}
+#mc_embed_signup input[type="email"] {
+  margin-top: 10px;
+  border-radius: 0;
+  background: none;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid #000;
+  font-family: adobe-garamond-pro, serif;
+  font-style: italic;
+  font-size: 16pt;
+}
+#mc_embed_signup input[type="email"]:focus {
+  outline: none;
+}
+#mc_embed_signup input[type="email"]::placeholder {
+  color: #000;
+  text-align: center;
+}
+#mc_embed_signup input[type="submit"] {
+  margin-top: 40px;
+  border: 0;
+  border-radius: 7px;
+  background: #000;
+  padding: 5px 30px;
+  color: #d8bcbc;
+  font-family: helvetica !important;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+#mc_embed_signup .mce_inline_error {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  color: #6b0505 !important;
+  font-weight: initial !important;
+  z-index: 1 !important;
+}
+/* Newsletter Sign-Up Confirmation */
 .alert-success {
   background-color: transparent !important;
   border-color: transparent !important;
@@ -69,6 +174,14 @@
   display: block;
 }
 @media all and (max-device-width: 768px) {
+  #mc_embed_signup.enter-view {
+    right: initial !important;
+    left: 50% !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+    -o-transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%) !important;
+  }
   .indiv-product a:hover .product-image.featured {
     display: block !important;
   }
