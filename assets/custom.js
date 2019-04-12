@@ -21,7 +21,9 @@ function mailchimpPopup(){
 }
 
 $(document).ready(function(){
-	mailchimpPopup();
+	if ( $('body').hasClass('template-index') ) {
+		mailchimpPopup();
+	}
 });
 
 // editorial - product view
