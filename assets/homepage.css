@@ -108,6 +108,9 @@ body.template-index .main .instagram-wrapper #oi_instagram-cta:hover {
   text-decoration: none;
 }
 @media all and (max-width: 768px) {
+  body.template-index .main #oi_banner #oi_video-controls button {
+    width: 45px !important;
+  }
   body.template-index .main #homepage-main-wrap #oi_shop-all {
     margin: 20px auto 50px !important;
   }
