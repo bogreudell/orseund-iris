@@ -15,6 +15,9 @@ body.template-index .main #oi_banner video {
   min-width: 100%;
   min-height: 100%;
 }
+body.template-index .main #oi_banner video#oi_mobile-video {
+  display: none;
+}
 body.template-index .main #oi_banner #oi_video-controls {
   position: absolute;
   bottom: 15px;
@@ -108,6 +111,12 @@ body.template-index .main .instagram-wrapper #oi_instagram-cta:hover {
   text-decoration: none;
 }
 @media all and (max-width: 768px) {
+  body.template-index .main #oi_banner video#oi_mobile-video {
+    display: block !important;
+  }
+  body.template-index .main #oi_banner video#oi_desktop-video {
+    display: none !important;
+  }
   body.template-index .main #oi_banner #oi_video-controls button {
     width: 45px !important;
   }

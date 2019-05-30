@@ -17,6 +17,9 @@ body
 					transform translate(-50%, -50%)
 					min-width 100%
 					min-height 100%
+
+					&#oi_mobile-video
+						display none
 					
 				#oi_video-controls
 					position absolute
@@ -115,6 +118,13 @@ body
 		&.template-index
 			.main
 				#oi_banner
+					video
+						&#oi_mobile-video
+							display block !important
+						
+						&#oi_desktop-video
+							display none !important 
+
 					#oi_video-controls
 						button
 							width 45px !important

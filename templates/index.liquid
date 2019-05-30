@@ -1,6 +1,7 @@
 <div id="oi_banner">
 	{% if settings.show_homepage_video %}
-		<video playsinline loop="true" muted autoplay="true" {% if settings.carousel-video-thumbnail.jpg != '' %} poster="https:{{ 'carousel-video-thumbnail.jpg' | asset_url }}" {% endif %} id="oi_hero_video">
+		<!-- desktop video -->
+		<video id="oi_desktop-video" playsinline loop="true" muted autoplay="true" {% if settings.carousel-video-thumbnail.jpg != '' %} poster="https:{{ 'carousel-video-thumbnail.jpg' | asset_url }}" {% endif %} id="oi_hero_video">
 			{% if settings.carousel_video_hd_streaming_1 != empty %}
 				<source src="{{ settings.carousel_video_hd_streaming_1 }}" type="video/mp4">
 			{% endif %}
@@ -13,7 +14,22 @@
 			{% if settings.carousel_video_low_def_streaming != empty %}
 				<source src="{{ settings.carousel_video_low_def_streaming }}" type="video/mp4">
 			{% endif %}
-		</video>
+		</video><!-- end desktop video -->
+		<!-- mobile video -->
+		<video id="oi_mobile-video" playsinline loop="true" muted autoplay="true" {% if settings.carousel-video-thumbnail.jpg != '' %} poster="https:{{ 'carousel-video-mobile-thumbnail.jpg' | asset_url }}" {% endif %} id="oi_hero_video">
+			{% if settings.carousel_video_hd_streaming_1 != empty %}
+				<source src="{{ settings.carousel_video_hd_streaming_1 }}" type="video/mp4">
+			{% endif %}
+			{% if settings.carousel_video_hd_streaming_2 != empty %}
+				<source src="{{ settings.carousel_video_hd_streaming_2 }}" type="video/mp4">
+			{% endif %}
+			{% if settings.carousel_video_sd_streaming != empty %}
+				<source src="{{ settings.carousel_video_sd_streaming}}" type="video/mp4">
+			{% endif %}
+			{% if settings.carousel_video_low_def_streaming != empty %}
+				<source src="{{ settings.carousel_video_low_def_streaming }}" type="video/mp4">
+			{% endif %}
+		</video><!-- end mobile video -->
 		<div id="oi_video-controls">
 			<div id="oi_controls-wrapper">
 				<button id="oi_play"><i class="fal fa-play"></i></button>

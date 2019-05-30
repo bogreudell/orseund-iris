@@ -654,6 +654,12 @@
         "max-width": 2000
       },
       {
+        "type": "image",
+        "id": "carousel-video-mobile-thumbnail.jpg",
+        "label": "Mobile Still Image",
+        "max-width": 2000
+      },
+      {
         "type": "header",
         "content": "Homepage Slider"
       },
