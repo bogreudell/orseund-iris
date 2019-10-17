@@ -36,6 +36,16 @@ body.template-index .main #oi_banner #oi_video-controls button#oi_play,
 body.template-index .main #oi_banner #oi_video-controls button#oi_volume-on {
   display: none;
 }
+body.template-index .main #oi_banner #oi_homepage-banner--desktop,
+body.template-index .main #oi_banner #oi_homepage-banner--mobile {
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-position: center !important;
+}
+body.template-index .main #oi_banner #oi_homepage-banner--mobile {
+  display: none !important;
+}
 body.template-index .main #homepage-main-wrap #oi_shop-all:hover {
   text-decoration: none;
   background: #000;
@@ -113,12 +123,21 @@ body.template-index .main .instagram-wrapper #oi_instagram-cta:hover {
 @media all and (max-width: 768px) {
   body.template-index .main #oi_banner video#oi_mobile-video {
     display: block !important;
+    min-width: unset !important;
+    min-height: unset !important;
+    width: 100% !important;
   }
   body.template-index .main #oi_banner video#oi_desktop-video {
     display: none !important;
   }
   body.template-index .main #oi_banner #oi_video-controls button {
     width: 45px !important;
+  }
+  body.template-index .main #oi_banner #oi_homepage-banner--desktop {
+    display: none !important;
+  }
+  body.template-index .main #oi_banner #oi_homepage-banner--mobile {
+    display: block !important;
   }
   body.template-index .main #homepage-main-wrap #oi_shop-all {
     margin: 20px auto 50px !important;

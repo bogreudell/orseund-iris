@@ -654,9 +654,49 @@
         "max-width": 2000
       },
       {
+        "type": "text",
+        "id": "carousel_video_mobile_hd_streaming_1",
+        "label": "Mobile Vimeo Highest Def Streaming Link"
+      },
+      {
+        "type": "text",
+        "id": "carousel_video_mobile_hd_streaming_2",
+        "label": "Mobile Vimeo High Def Streaming Link"
+      },
+      {
+        "type": "text",
+        "id": "carousel_video_mobile_sd_streaming",
+        "label": "Mobile Vimeo Standard Def Streaming Link"
+      },
+      {
+        "type": "text",
+        "id": "carousel_video_mobile_low_def_streaming",
+        "label": "Mobile Vimeo Low Def Streaming Link"
+      },
+      {
         "type": "image",
         "id": "carousel-video-mobile-thumbnail.jpg",
         "label": "Mobile Still Image",
+        "max-width": 2000
+      },
+      {
+        "type": "header",
+        "content": "Homepage banner"
+      },
+      {
+        "type": "paragraph",
+        "content": "Upload for still image instead of banner video. By default, this shows if show banner video is unticked."
+      },
+      {
+        "type": "image",
+        "id": "homepage-banner-image-desktop.jpg",
+        "label": "Desktop Banner Image",
+        "max-width": 2000
+      },
+      {
+        "type": "image",
+        "id": "homepage-banner-image-mobile.jpg",
+        "label": "Mobile Banner Image",
         "max-width": 2000
       },
       {

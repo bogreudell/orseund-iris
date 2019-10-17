@@ -38,6 +38,16 @@ body
 						&#oi_play,
 						&#oi_volume-on
 							display none
+				
+				#oi_homepage-banner--desktop,
+				#oi_homepage-banner--mobile
+					width 100%
+					height 100%
+					background-size cover !important
+					background-position center !important
+				
+				#oi_homepage-banner--mobile
+					display none !important
 
 			#homepage-main-wrap
 				#oi_shop-all
@@ -121,6 +131,9 @@ body
 					video
 						&#oi_mobile-video
 							display block !important
+							min-width unset !important
+							min-height unset !important
+							width 100% !important							
 						
 						&#oi_desktop-video
 							display none !important 
@@ -128,7 +141,13 @@ body
 					#oi_video-controls
 						button
 							width 45px !important
-							
+					
+					#oi_homepage-banner--desktop
+						display none !important
+						
+					#oi_homepage-banner--mobile
+						display block !important
+													
 				#homepage-main-wrap
 					#oi_shop-all
 						margin 20px auto 50px !important
