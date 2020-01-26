@@ -1,4 +1,4 @@
-  
+
   #gift-card-outer-container{
   	background: #D7BCBC;
   	box-shadow: none;
@@ -30,6 +30,7 @@ body {
     margin: 0;
     -webkit-font-smoothing: antialiased
 }
+
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
 menu, nav, section, main {
@@ -862,5 +863,4 @@ footer[role='contentinfo'] .gift-card-icon {
         box-shadow: none
     }
 }
-
 
