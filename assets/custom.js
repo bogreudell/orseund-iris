@@ -9,6 +9,24 @@ Last Update:
 
 */
 
+function disabledOptionClass(){
+	if ( $('body').hasClass('template-product') ){
+		$('#product-select.form-control option').each(function(){
+			if ( $(this).is(':disabled') ){
+				var	$targetValue = $(this).attr('data-variant-title');
+
+				$('.sod_list > span').each(function(){
+					if ( $(this).attr('data-value') == $targetValue ){
+						$(this).removeClass('active');
+						$(this).removeClass('selected')
+						$(this).addClass('disabled');
+					}
+				});
+			}
+		});
+	}
+}
+
 // mailchimp popup
 function mailchimpPopup(){
 	setTimeout(function(){
@@ -395,6 +413,10 @@ function fixedProductInfo(){
 		}
 	});
 }
+
+$(window).load(function(){
+	disabledOptionClass();
+});
 
 $(document).ready(function(){
 	if ( $('body').hasClass('template-product') ){

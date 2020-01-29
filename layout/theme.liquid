@@ -750,7 +750,8 @@ if (variant && variant.featured_image) {
 
 // initialize multi selector for product
 jQuery(function() {
-	new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+	// new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+	new Shopify.OptionSelectors("product-select", { product: {{ product | json }} });
 	$("#product-variants .selector-wrapper select").selectOrDie({
 		customClass: "custom",
 		customID:    "custom",
