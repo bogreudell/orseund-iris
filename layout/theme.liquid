@@ -710,43 +710,46 @@ if($(window).width() > 768){
 {% if product.variants.size > 0 %}
 <script type="text/javascript">
 // <![CDATA[
-var selectCallback = function(variant, selector) {
+/*
+ * These functions handle changing the price to "sold out" if the selected variant is unavailable; they also change product images based on the 
+ * variable selected. They pertain to an older version of the site, but I'm not prepared to delete them yet.
+ */  
+// var selectCallback = function(variant, selector) {
 
-var comparePrice = $('.compare-at-price');
+// var comparePrice = $('.compare-at-price');
 
-  if (variant && variant.available == true) {
-    // selected a valid variant
-    jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-    jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}").replace(".00", ""));  // update price field
-  } else {
-    // variant doesn't exist
-    jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
-    var message = variant ? {{ 'products.product.sold_out' | t | json }} : {{ 'products.product.unavailable' | t | json }};
-    comparePrice.hide();
-    jQuery('#price-field').text(message); // update price-field message
-  }
+//   if (variant && variant.available == true) {
+//     // selected a valid variant
+//     jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+//     jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}").replace(".00", ""));  // update price field
+//   } else {
+//     // variant doesn't exist
+//     jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+//     var message = variant ? {{ 'products.product.sold_out' | t | json }} : {{ 'products.product.unavailable' | t | json }};
+//     comparePrice.hide();
+//     jQuery('#price-field').text(message); // update price-field message
+//   }
 
-  if (variant && variant.available == true) {
-	  if ( variant.compare_at_price > variant.price ) {
-	    comparePrice
-	      .html(Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
-	      .show();
-	  } else {
-	    comparePrice.hide();
-	  }
-	}
+//   if (variant && variant.available == true) {
+// 	  if ( variant.compare_at_price > variant.price ) {
+// 	    comparePrice
+// 	      .html(Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
+// 	      .show();
+// 	  } else {
+// 	    comparePrice.hide();
+// 	  }
+// 	}
 
-if (variant && variant.featured_image) {
-        var originalImage = $(".featured-image-div img");
-        var newImage = variant.featured_image;
-        var element = originalImage[0];
-        Shopify.Image.switchImage(newImage, element, function (newImageSizedSrc, newImage, element) {
-            $( '.featured-image-div img' ).attr('src', newImageSizedSrc);
-        });
-    }
+// if (variant && variant.featured_image) {
+//         var originalImage = $(".featured-image-div img");
+//         var newImage = variant.featured_image;
+//         var element = originalImage[0];
+//         Shopify.Image.switchImage(newImage, element, function (newImageSizedSrc, newImage, element) {
+//             $( '.featured-image-div img' ).attr('src', newImageSizedSrc);
+//         });
+//     }
 
-};
-
+// };
 // initialize multi selector for product
 jQuery(function() {
 	// new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
