@@ -9,6 +9,18 @@ body.template-product #related-products li {
   width: 24.75vw;
   border: 0 !important /* styles override */;
 }
+body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap {
+  width: auto !important;
+  height: 80% !important;
+}
+body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_relative-wrap {
+  width: 100% !important;
+  height: 100% !important;
+}
+body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_relative-wrap img {
+  width: auto;
+  height: inherit;
+}
 @media all and (max-width: 1060px) {
   body.template-product #related-products {
     max-width: none !important /* styles override */;
