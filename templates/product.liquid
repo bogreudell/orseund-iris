@@ -3,7 +3,7 @@
 <article id="{{product.handle}}" class="product"><!-- used to have container class -->
 
 	{% include 'breadcrumb' %}
-
+	{% include 'swym-product-view', product: product %}
 	<div class="product-content">
 		<div class="product-images">
 			{% if product.compare_at_price_max > product.price %}
