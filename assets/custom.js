@@ -415,7 +415,7 @@ function fixedProductInfo(){
 }
 
 $(window).load(function(){
-	disabledOptionClass();
+	// disabledOptionClass();
 });
 
 $(document).ready(function(){

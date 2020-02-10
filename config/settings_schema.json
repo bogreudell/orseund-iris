@@ -623,8 +623,8 @@
       },
       {
         "type": "checkbox",
-        "id": "show_homepage_video",
-        "label": "Show?",
+        "id": "show_homepage_desktop_video",
+        "label": "Show desktop video",
         "default": true
       },
       {
@@ -652,6 +652,12 @@
         "id": "carousel-video-thumbnail.jpg",
         "label": "Loading Placeholder Image",
         "max-width": 2000
+      },
+      {
+        "type": "checkbox",
+        "id": "show_homepage_mobile_video",
+        "label": "Show mobile video",
+        "default": true
       },
       {
         "type": "text",
