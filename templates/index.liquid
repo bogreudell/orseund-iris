@@ -1,5 +1,5 @@
 <div id="oi_banner">
-	{% if settings.show_homepage_video %}
+	{% if settings.show_homepage_desktop_video %}
 		<!-- desktop video -->
 		<video id="oi_desktop-video" playsinline loop="true" muted autoplay="true" {% if settings.carousel-video-thumbnail.jpg != '' %} poster="https:{{ 'carousel-video-thumbnail.jpg' | asset_url }}" {% endif %} id="oi_hero_video">
 			{% if settings.carousel_video_hd_streaming_1 != empty %}
@@ -15,6 +15,10 @@
 				<source src="{{ settings.carousel_video_low_def_streaming }}" type="video/mp4">
 			{% endif %}
 		</video><!-- end desktop video -->
+	{% else %}
+		<div id="oi_homepage-banner--desktop" style="background:url(https:{{ 'homepage-banner-image-desktop.jpg' | asset_url }})"></div>
+	{% endif %}
+	{% if settings.show_homepage_mobile_video %}
 		<!-- mobile video -->
 		<video id="oi_mobile-video" playsinline loop="true" muted autoplay="true" {% if settings.carousel-video-thumbnail.jpg != '' %} poster="https:{{ 'carousel-video-mobile-thumbnail.jpg' | asset_url }}" {% endif %} id="oi_hero_video">
 			{% if settings.carousel_video_mobile_hd_streaming_1 != empty %}
@@ -41,7 +45,6 @@
 		</div>
 		{% endif %}
 	{% else %}
-		<div id="oi_homepage-banner--desktop" style="background:url(https:{{ 'homepage-banner-image-desktop.jpg' | asset_url }})"></div>
 		<div id="oi_homepage-banner--mobile" style="background:url(https:{{ 'homepage-banner-image-mobile.jpg' | asset_url }})"></div>
 		{%comment%}{% if settings.show_slider %}
 		<div class="wide-container" id="homepage-slider">
