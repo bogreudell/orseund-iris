@@ -50,7 +50,7 @@
 							<select id="product-select" name='id' class="form-control">
 								{% comment %}<option value="" disabled selected>SELECT</option>{% endcomment %}
 								{% for variant in product.variants %}
-								<option {% if variant.available == false %}disabled {% endif %} data-variant-title="{{ variant.title }}"{%comment%} {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}{% endcomment %} value="{{ variant.id }}">{{ variant.title }}{%comment%}- {{ variant.price | money }}{%endcomment%}</option>
+								<option {%comment%}{% if variant.available == false %}disabled {% endif %} data-variant-title="{{ variant.title }}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}{% endcomment %} value="{{ variant.id }}">{{ variant.title }}{%comment%}- {{ variant.price | money }}{%endcomment%}</option>
 								{% comment %}
 								THE BELOW LINE MAKES THE ACTUAL SIZE SHOW AS THE ONLY OPTION - COMMENT OUT ABOVE LINE AND ENABLE THE BELOW LINE TO MAKE THIS CHANGE - ethansteiner.com
 								<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">SIZE: {{ variant.title }}</option>
