@@ -77,7 +77,21 @@ body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_
   }
 }
 @media all and (max-width: 768px) {
-  #related-products li {
+  body.template-product #related-products li {
     width: 100% !important;
+  }
+  body.template-product .oi_popup-module#oi_sizing-popup button {
+    top: 5px !important;
+    right: 5px !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+  body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap {
+    width: 90% !important;
+    height: auto !important;
+  }
+  body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_relative-wrap img {
+    width: inherit !important;
+    height: auto !important;
   }
 }
