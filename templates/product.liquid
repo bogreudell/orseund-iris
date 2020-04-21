@@ -40,8 +40,8 @@
 					<h3 class="custom-font" id="price-field">{{ product.price | money }}</h3>
 				</div>
 
-				{% if product.available %}
-					<form action="/cart/add" method="post" enctype="multipart/form-data">
+
+				<form action="/cart/add" method="post" enctype="multipart/form-data">
 						{% if product.variants.size > 0  %}
 						{% comment %}
 						CHANGE THE ABOVE product.variants to show the size when only 1 size is available
@@ -89,9 +89,9 @@
 						<!-- id="purchase" -->
 						<input type="submit" name="add" value="{{ 'products.product.add_to_cart' | t }}" id="purchase" class="btn btn-success disabled" />
 					</form>
-				{% else %}
-					<div class="product-out-of-stock">{{ 'products.product.sorry_stock' | t }}</div>
-				{% endif %}
+
+					{% comment %} optional "out of stock" message
+					<div class="product-out-of-stock">{{ 'products.product.sorry_stock' | t }}</div>{% endcomment %}
 
 				<div class="product-description-wrapper tk-acumin-pro">
 					{{ product.description }}

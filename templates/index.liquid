@@ -16,7 +16,7 @@
 			{% endif %}
 		</video><!-- end desktop video -->
 	{% else %}
-		<div id="oi_homepage-banner--desktop" style="background:url(https:{{ 'homepage-banner-image-desktop.jpg' | asset_url }})"></div>
+		<div id="oi_homepage-banner--desktop" style="background:url(https:{{ 'homepage-banner-image-desktop.jpg' | asset_img_url: 'master' }})"></div>
 	{% endif %}
 	{% if settings.show_homepage_mobile_video %}
 		<!-- mobile video -->

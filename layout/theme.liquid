@@ -725,13 +725,13 @@ var comparePrice = $('.compare-at-price');
 
   if (variant && variant.available == true) {
     // selected a valid variant
-    // jQuery('#purchase').show();
-    jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+    jQuery('#purchase').show();
+    // jQuery('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
     // jQuery('#price-field').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}").replace(".00", ""));  // update price field
   } else {
-  	// jQuery('#purchase').attr('style','display:none !important;');
+  	jQuery('#purchase').attr('style','display:none !important;');
     // variant doesn't exist
-    jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+    // jQuery('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
     // var message = variant ? {{ 'products.product.sold_out' | t | json }} : {{ 'products.product.unavailable' | t | json }};
     // comparePrice.hide();
     // jQuery('#price-field').text(message); // update price-field message
