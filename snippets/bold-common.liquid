@@ -109,6 +109,9 @@ It may be overwritten and any customizations would be lost.
     {%- for namespace in metafield_namespaces_to_load -%}
         window.BOLD.common.Shopify.metafields[{{ namespace | json }}] = {{ shop.metafields[namespace] | json }};
     {%- endfor -%}
+    window.BOLD.common.cacheParams = window.BOLD.common.cacheParams || {};
+    window.BOLD.common.cacheParams.bundles = 1586380032;
+
 </script>
 
 {%- comment -%} INCLUDE APP SCRIPTS BELOW {%- endcomment -%}

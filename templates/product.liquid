@@ -40,8 +40,22 @@
 					<h3 class="custom-font" id="price-field">{{ product.price | money }}</h3>
 				</div>
 
-				{% if product.available %}
-					<form action="/cart/add" method="post" enctype="multipart/form-data">
+				{% assign archived_style = false %}
+				{% for collection in product.collections %}
+				  {% if archived_style == false and collection.title == 'ARCHIVED' %}
+				    {% assign archived_style = true %}
+				  {% endif %}
+				{% endfor %}
+				
+				{%comment%}If product is archived, show "no longer available message"{%endcomment%}
+				{% if archived_style == true %}
+				
+				<span style="color: #dec3c3; line-height: 1.75rem; letter-spacing: 0.075rem; font-size: 11px;"><strong>END OF AN ERA. THIS STYLE HAS NOW BEEN ARCHIVED ♥</strong></span>
+				
+				{%comment%}Else, show usual payment form{%endcomment%}
+				{% else %}
+
+				<form action="/cart/add" method="post" enctype="multipart/form-data">
 						{% if product.variants.size > 0  %}
 						{% comment %}
 						CHANGE THE ABOVE product.variants to show the size when only 1 size is available
@@ -89,8 +103,10 @@
 						<!-- id="purchase" -->
 						<input type="submit" name="add" value="{{ 'products.product.add_to_cart' | t }}" id="purchase" class="btn btn-success disabled" />
 					</form>
-				{% else %}
-					<div class="product-out-of-stock">{{ 'products.product.sorry_stock' | t }}</div>
+
+					{% comment %} optional "out of stock" message
+					<div class="product-out-of-stock">{{ 'products.product.sorry_stock' | t }}</div>{% endcomment %}
+
 				{% endif %}
 
 				<div class="product-description-wrapper tk-acumin-pro">

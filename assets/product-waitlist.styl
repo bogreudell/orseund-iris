@@ -21,3 +21,107 @@ body
                     line-height initial !important
                     font-size 1rem !important
                     letter-spacing 1px !important
+        
+        div#swym-tab-modal
+            background #d8bcbc !important
+            border-radius 40px !important
+            text-align center !important
+            -webkit-box-shadow 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12) !important
+            box-shadow 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12) !important
+            transition 0.5s right ease-in-out !important
+            font-family adobe-garamond-pro, serif !important
+            font-style italic !important
+            
+            h2
+                font-family adobe-garamond-pro, serif !important
+                font-style italic !important
+                font-size 18pt !important
+                text-transform unset !important
+            
+            .swym-tab-modal-content > div
+                background none !important
+            
+            #swym-tab-modal-close
+                position absolute
+                height 50px
+                width 50px
+                right 0px
+                top 0
+                
+                &:before
+                    position absolute
+                    content ""
+                    background url('//cdn.shopify.com/s/files/1/0250/7327/t/14/assets/x.svg?v=18118639699581039351') center center no-repeat
+                    height 30px
+                    width 30px
+                    left 0
+                    top 15px
+                
+                i
+                    display none !important
+            
+            .swym-title
+                margin-bottom 0 !important
+                
+                &:after
+                    content "This product is sold out. We're working on production and you'll be the first to know when it's back in stock."
+                    display block
+                    width 70%
+                    margin 40px auto
+                    font-size 12pt !important
+                    line-height 2rem
+            
+            input.swym-input
+                width 50%
+                margin-right 1%
+                display inline-block
+                background none
+                border 0
+                border-bottom 1px solid #000
+                height 30px
+                vertical-align super
+                color #000
+                
+                &::placeholder
+                    color #000
+            
+            .swym-remind-me #swym-remind-email-auth-button
+                display inline-block
+                width 25%
+                border-radius 17px
+                background #000
+                color #d8bcbc
+                font-family helvetica !important
+                text-transform uppercase
+                font-weight 700
+                font-style normal
+                margin-top 0
+                height 30px
+                padding 0
+                
+            p.swym-remind-description
+                display none !important
+            
+            .swym-privacy-info
+                display none !important
+
+@media all and (max-width:768px)
+    body
+        &.template-product
+            div#swym-tab-modal
+                .swym-title
+                    margin-top 50px
+                    
+                    &:after
+                        width 80%
+                    
+                input.swym-input
+                    display block
+                    width 80%
+                    margin auto
+                    text-align center
+                    
+                .swym-remind-me #swym-remind-email-auth-button
+                    display block
+                    width 50%
+                    margin 5% auto
