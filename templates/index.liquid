@@ -16,7 +16,7 @@
 			{% endif %}
 		</video><!-- end desktop video -->
 	{% else %}
-		<div id="oi_homepage-banner--desktop" style="background:url(https:{{ 'homepage-banner-image-desktop.jpg' | asset_img_url: 'master' }})"></div>
+		<a href="{{ settings.desktop-homepage-banner-link }}"><div id="oi_homepage-banner--desktop" style="background:url(https:{{ 'homepage-banner-image-desktop.jpg' | asset_img_url: 'master' }})"></div></a>
 	{% endif %}
 	{% if settings.show_homepage_mobile_video %}
 		<!-- mobile video -->
@@ -45,7 +45,7 @@
 		</div>
 		{% endif %}
 	{% else %}
-		<div id="oi_homepage-banner--mobile" style="background:url(https:{{ 'homepage-banner-image-mobile.jpg' | asset_url }})"></div>
+		<a href="{{ settings.mobile-homepage-banner-link }}"><div id="oi_homepage-banner--mobile" style="background:url(https:{{ 'homepage-banner-image-mobile.jpg' | asset_url }})"></div></a>
 		{%comment%}{% if settings.show_slider %}
 		<div class="wide-container" id="homepage-slider">
 			<div id="homepage-slider-wrap">

@@ -700,10 +700,20 @@
         "max-width": 2000
       },
       {
+        "type": "text",
+        "id": "desktop-homepage-banner-link",
+        "label": "Desktop link to"
+      },
+      {
         "type": "image",
         "id": "homepage-banner-image-mobile.jpg",
         "label": "Mobile Banner Image",
         "max-width": 2000
+      },
+      {
+        "type": "text",
+        "id": "mobile-homepage-banner-link",
+        "label": "Mobile link to"
       },
       {
         "type": "header",
