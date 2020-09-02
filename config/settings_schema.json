@@ -326,6 +326,14 @@
         "info": "Maximum recommended dimensions: 700px x 400px"
       },
       {
+        "type": "image",
+        "id": "alt_logo.png",
+        "label": "Alternate logo white header",
+        "max-width": 700,
+        "max-height": 400,
+        "info": "Maximum recommended dimensions: 700px x 400px"
+      },
+      {
         "type": "text",
         "id": "title_text",
         "label": "Homepage Title Text",
