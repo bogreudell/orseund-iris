@@ -1265,6 +1265,38 @@
       },
       {
         "type": "paragraph",
+        "content": "WeChat"
+      },
+      {
+        "type": "checkbox",
+        "id": "sm_wechat",
+        "label": "Show?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sm_wechat_link",
+        "label": "Link to",
+        "default": "http:\/\/www.orseundiris.com"
+      },
+      {
+        "type": "paragraph",
+        "content": "LRB"
+      },
+      {
+        "type": "checkbox",
+        "id": "sm_lrb",
+        "label": "Show?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sm_lrb_link",
+        "label": "Link to",
+        "default": "http:\/\/www.xiaohongshu.com"
+      },
+      {
+        "type": "paragraph",
         "content": "Pinterest"
       },
       {

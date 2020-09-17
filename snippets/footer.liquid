@@ -81,6 +81,20 @@
 					</a>
 				</li>
 			{% endif %}
+			{%if settings.sm_wechat %}
+				<li id="sm-wechat" class="oi_social-button">
+					<a href="{{settings.sm_wechat_link}}">
+						<i class="fab fa-wechat-p"></i>
+					</a>
+				</li>
+			{% endif %}
+			{%if settings.sm_lrb %}
+				<li id="sm-lrb" class="oi_social-button">
+					<a href="{{settings.sm_lrb_link}}">
+						<i class="fab fa-lrb-p"></i>
+					</a>
+				</li>
+			{% endif %}
 		</ul>
 	{% endif %}
 <!-- End Newsletter -->
