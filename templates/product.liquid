@@ -103,6 +103,7 @@
 						<!-- id="purchase" -->
 						<input type="submit" name="add" value="{{ 'products.product.add_to_cart' | t }}" id="purchase" class="btn btn-success disabled" />
 						<!-- waitlist dummy button -->
+						{% if product.available == false %}
 						<div id="waitlist-placeholder">Add me to the Waitlist</div>
 						<style>
 							#waitlist-placeholder {
@@ -129,7 +130,14 @@
 							#waitlist-placeholder.wat {
 								display: none !important;
 							}
+							button.btn.swym-button.swym-add-to-watchlist {
+							 	display: none;
+							}
+							button.btn.swym-button.swym-add-to-watchlist.active {
+								display: block;
+							}
 						</style>
+						{% endif %}
 					</form>
 
 					{% comment %} optional "out of stock" message
