@@ -1,6 +1,12 @@
 body.template-product.has-alert-banner .product-information.fixed {
   top: 60px !important;
 }
+body.template-product button.btn.swym-button.swym-add-to-watchlist {
+  display: none !important;
+}
+body.template-product button.btn.swym-button.swym-add-to-watchlist.active {
+  display: block !important;
+}
 body.template-product #related-products {
   max-width: none !important /* styles override */;
   text-align: center;
