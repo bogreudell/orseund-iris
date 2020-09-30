@@ -103,6 +103,7 @@
 						<!-- id="purchase" -->
 						<input type="submit" name="add" value="{{ 'products.product.add_to_cart' | t }}" id="purchase" class="btn btn-success disabled" />
 						<!-- waitlist dummy button -->
+						{% if product.available == false %}
 						<div id="waitlist-placeholder">Add me to the Waitlist</div>
 						<style>
 							#waitlist-placeholder {
@@ -129,7 +130,14 @@
 							#waitlist-placeholder.wat {
 								display: none !important;
 							}
+							button.btn.swym-button.swym-add-to-watchlist {
+							 	display: none;
+							}
+							button.btn.swym-button.swym-add-to-watchlist.active {
+								display: block;
+							}
 						</style>
+						{% endif %}
 					</form>
 
 					{% comment %} optional "out of stock" message
@@ -302,3 +310,104 @@
 		// });
 	});
 </script>
+
+<style>
+	body.template-product.has-alert-banner .product-information.fixed {
+  top: 60px !important;
+}
+body.template-product #related-products {
+  max-width: none !important /* styles override */;
+  text-align: center;
+}
+body.template-product #related-products li {
+  width: 24.75vw;
+  border: 0 !important /* styles override */;
+}
+body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap {
+  width: auto !important;
+  height: 80% !important;
+}
+body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_relative-wrap {
+  width: 100% !important;
+  height: 100% !important;
+}
+body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_relative-wrap img {
+  width: auto;
+  height: inherit;
+}
+@media all and (max-width: 1060px) {
+  body.template-product #related-products {
+    max-width: none !important /* styles override */;
+    text-align: center;
+  }
+  body.template-product #related-products li {
+    width: 49vw;
+    margin-bottom: 0 !important;
+  }
+}
+/* can we minimize the "importants" after the "big" cleanup later? */
+@media all and (max-width: 907px) {
+  body.template-product .oi_fixed-header .logo-wrapper img {
+    margin-top: -25px !important;
+  }
+  body.template-product .breadcrumb {
+    padding-left: 15px !important;
+    margin-bottom: 0 !important;
+  }
+  body.template-product .product-images {
+    width: 100% !important;
+  }
+  body.template-product #product_images #product-thumbnails {
+    display: none;
+  }
+  body.template-product #product_images .featured-image-div {
+    width: 100% !important;
+    height: 75vh !important;
+    white-space: nowrap !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  body.template-product #product_images .featured-image-div img {
+    height: 100%;
+    width: auto !important;
+    vertical-align: top;
+  }
+  body.template-product #product_images .featured-image-div iframe {
+    overflow: hidden;
+  }
+  body.template-product #product_images .featured-product-div {
+    height: 100% !important;
+    margin: 0 !important;
+    width: auto !important;
+    display: inline-block !important;
+  }
+  body.template-product .product-information {
+    width: 100% !important;
+    padding: 15px !important;
+  }
+  body.template-product #related-products li .indiv-product {
+    margin-bottom: 0 !important;
+  }
+}
+@media all and (max-width: 768px) {
+  body.template-product #related-products li {
+    width: 100% !important;
+  }
+  body.template-product .oi_popup-module#oi_sizing-popup button {
+    top: 5px !important;
+    right: 5px !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+  body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap {
+    width: 90% !important;
+    height: auto !important;
+  }
+  body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_relative-wrap img {
+    width: inherit !important;
+    height: auto !important;
+  }
+}
+
+	</style>
