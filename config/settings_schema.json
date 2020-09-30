@@ -326,6 +326,14 @@
         "info": "Maximum recommended dimensions: 700px x 400px"
       },
       {
+        "type": "image",
+        "id": "alt_logo.png",
+        "label": "Alternate logo white header",
+        "max-width": 700,
+        "max-height": 400,
+        "info": "Maximum recommended dimensions: 700px x 400px"
+      },
+      {
         "type": "text",
         "id": "title_text",
         "label": "Homepage Title Text",
@@ -700,10 +708,20 @@
         "max-width": 2000
       },
       {
+        "type": "text",
+        "id": "desktop-homepage-banner-link",
+        "label": "Desktop link to"
+      },
+      {
         "type": "image",
         "id": "homepage-banner-image-mobile.jpg",
         "label": "Mobile Banner Image",
         "max-width": 2000
+      },
+      {
+        "type": "text",
+        "id": "mobile-homepage-banner-link",
+        "label": "Mobile link to"
       },
       {
         "type": "header",
@@ -1244,6 +1262,38 @@
         "id": "sm_flickr_link",
         "label": "Link to",
         "default": "http:\/\/www.flickr.com"
+      },
+      {
+        "type": "paragraph",
+        "content": "WeChat"
+      },
+      {
+        "type": "checkbox",
+        "id": "sm_wechat",
+        "label": "Show?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sm_wechat_link",
+        "label": "Link to",
+        "default": "http:\/\/www.orseundiris.com"
+      },
+      {
+        "type": "paragraph",
+        "content": "LRB"
+      },
+      {
+        "type": "checkbox",
+        "id": "sm_lrb",
+        "label": "Show?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sm_lrb_link",
+        "label": "Link to",
+        "default": "http:\/\/www.xiaohongshu.com"
       },
       {
         "type": "paragraph",
