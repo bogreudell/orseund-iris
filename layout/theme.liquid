@@ -135,7 +135,6 @@
 
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.header_colorscheme_white %} header-white {% endif; %}{% if settings.show_alert_banner %} has-alert-banner{% endif; %}">
-
 <!-- Ajax Cart -->
 <div id="cartDrawer" class="no-click" style="opacity:0;">
 	<div id="cartDrawerInner">
@@ -385,13 +384,19 @@
 				<div class="col-md-6 col-sm-6 col-sm-offset-3 col-md-offset-3">
 					<h1 id="site-title">
 					  <a href="/" title="Home">
-					  	{% if settings.header_colorscheme_white %}  
-					  		<img src="{{ 'alt_logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="img-responsive"/>
-					    {% else if settings.logo_image == "logo.png" %}
-					      <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="img-responsive"/>
-					    {% else %}
-					      {{ shop.name | escape }}
-					    {% endif %}
+					  	{% if template == 'index' %}
+					  		<!-- logo color is dynamic -->
+						  	{% if settings.header_colorscheme_white %} 
+						  		<img src="{{ 'alt_logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="img-responsive"/>
+						    {% else if settings.logo_image == "logo.png" %}
+						      <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="img-responsive"/>
+						    {% else %}
+						      {{ shop.name | escape }}
+						    {% endif %}
+						{% else %}
+							<!-- logo color is always black -->
+							<img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="img-responsive"/>
+						{% endif %}
 					  </a>
 					</h1>
 				</div>
