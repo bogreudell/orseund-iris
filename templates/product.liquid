@@ -144,16 +144,17 @@
 					<div class="product-out-of-stock">{{ 'products.product.sorry_stock' | t }}</div>{% endcomment %}
 
 				{% endif %}
+				
+				<div class="oi_product-popups">
+					<button id="oi_details-sizing">Details / Sizing</button>
+					<button id="oi_shipping-returns">Shipping / Returns</button>
+					<div class="clear"></div>
+				</div>
 
 				<div class="product-description-wrapper tk-acumin-pro">
 					{{ product.description }}
 				</div>
 			</section>
-
-			<div class="oi_product-popups">
-				<button id="oi_details-sizing">Details / Sizing</button>
-				<button id="oi_shipping-returns">Shipping / Returns</button>
-			</div>
 
 			<img id="oi_image-flat" src="{{ product.images[1] | img_url: 'master' }}" alt="">
 		</div>
@@ -311,6 +312,7 @@
 	});
 </script>
 
+<!-- product styles, pasted in manually because stylesheet isn't loading -->
 <style>
 	body.template-product.has-alert-banner .product-information.fixed {
   top: 60px !important;
@@ -409,5 +411,28 @@ body.template-product .oi_popup-module#oi_sizing-popup .oi_popup-image-wrap .oi_
     height: auto !important;
   }
 }
-
-	</style>
+/* waitlist button fix */
+body.template-product .swym-button-bar.swym-wishlist-button-bar.swym-inject {
+  margin: 0 !important;
+  width: 65% !important;
+  border-radius: 0 !important;
+  font-size: 1rem !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  vertical-align: top !important;
+}
+body.template-product .swym-button-bar.swym-wishlist-button-bar.swym-inject .swym-btn-container.swym-inject {
+  width: 100% !important;
+}
+body.template-product .swym-button-bar.swym-wishlist-button-bar.swym-inject .swym-btn-container.swym-inject button.btn.swym-button.swym-add-to-watchlist.swym-inject {
+  width: 100% !important;
+  padding: 7px 12px !important;
+  font-weight: initial !important;
+  text-indent: 0px !important;
+  height: auto !important;
+  line-height: initial !important;
+  font-size: 1rem !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 25px;
+}
+</style>
