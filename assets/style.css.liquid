@@ -154,7 +154,7 @@ body.template-product .entry-content p {
 
 body.template-product .oi_product-popups {
   position: relative;
-  margin-bottom: 30px;
+  margin: 0 auto 15px;
 }
 
 body.template-product .oi_product-popups button {
@@ -168,16 +168,17 @@ body.template-product .oi_product-popups button {
   border: 0;
 }
 
-body.template-product .oi_product-popups button {
-  position: absolute;
-}
-
 body.template-product .oi_product-popups button:first-of-type {
-  left: 0;
+  float: left;
+  padding-left: 0;
 }
 
 body.template-product .oi_product-popups button:last-of-type {
-  right: 0;
+  float: right;
+}
+
+body.template-product .oi_product-popups .clear {
+  clear: both;
 }
 
 .oi_product-popups button:focus {
@@ -3896,7 +3897,7 @@ ul#product-thumbnails li{
 }
 
 .product-description-wrapper{
-	margin: 30px 0;
+	margin: 20px 0;
   font-size:11px;
 	text-transform:uppercase;
   line-height: 1.3em;
