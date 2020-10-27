@@ -88,11 +88,13 @@
 					</a>
 				</li>
 			{% endif %}
-			{%if settings.sm_lrb %}
-				<li id="sm-lrb" class="oi_social-button">
-					<a href="{{settings.sm_lrb_link}}">
-						<i class="fab fa-lrb"></i>
-					</a>
+			{%if settings.sm_accessibe %}
+				<li id="sm-accessibe" class="oi_social-button">
+						<a href="{{settings.sm_accessibe_link}}">
+							<span data-acsb-custom-trigger="true">
+								<i class="fas fa-universal-access"></i>
+							</span>
+						</a>
 				</li>
 			{% endif %}
 		</ul>

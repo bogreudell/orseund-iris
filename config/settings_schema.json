@@ -1281,6 +1281,23 @@
       },
       {
         "type": "paragraph",
+        "content": "Accessibe"
+      },
+      {
+        "type": "checkbox",
+        "id": "sm_accessibe",
+        "label": "Show?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sm_wechat_link",
+        "label": "Link to",
+        "default": "http:\/\/www.orseundiris.com"
+      },
+
+      {
+        "type": "paragraph",
         "content": "LRB"
       },
       {
