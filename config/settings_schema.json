@@ -1289,13 +1289,12 @@
         "label": "Show?",
         "default": true
       },
-      {
-        "type": "text",
-        "id": "sm_wechat_link",
-        "label": "Link to",
-        "default": "http:\/\/www.orseundiris.com"
-      },
-
+      // {
+      //   "type": "text",
+      //   "id": "sm_accessibe_link",
+      //   "label": "Link to",
+      //   "default": "http:\/\/www.orseundiris.com"
+      // },
       {
         "type": "paragraph",
         "content": "LRB"
