@@ -19,7 +19,7 @@ body.template-index .main #oi_banner video#oi_mobile-video {
   display: none;
 }
 body.template-index .main #oi_banner #oi_video-controls {
-  position: absolute;
+  display: none !important;
   bottom: 15px;
   right: 25px;
 }
